@@ -2,6 +2,21 @@
 import os 
 os.system("clear")
 
+                                        #Main Menu
+
+def mainMenu(ip_add):
+    os.system("tput setaf 1")
+    print("""
+                1 : Basic Operation
+                2 : Package Management
+                3 : User Management
+                4 : Networking
+                5 : Services Management
+                6 : Use Docker Management
+                7 : exit
+    """)
+    os.system("tput setaf 7")
+
 
                                     # Basic Operation
 def basicOperation(ip_add):
@@ -25,27 +40,27 @@ def basicOperation(ip_add):
         ch2 = input("Enter Your Choise : ")
 
         if (("date" in ch2) or ("Date" in ch2) or ("DATE" in ch2)) :
-            os.system("date")
+            os.system("ssh {} date".format(ip_add))
 
         elif (("cal" in ch2) or ("Cal" in ch2) or ("CAL" in ch2)) :
-            os.system("cal")
+            os.system("ssh {} cal".format(ip_add))
             
         elif ((("curr" in ch2) or ("Curr" in ch2) or ("Curr" in ch2) or ("che" in ch2) or ("Che" in ch2) or ("CHE" in ch2)) and ((("user" in ch2) or ("User" in ch2) or ("USER" in ch2)))) :
-            os.system("whoami")
+            os.system("ssh {} whoami".format(ip_add))
 
         elif ((("curr" in ch2) or ("Curr" in ch2) or ("Curr" in ch2) or ("che" in ch2) or ("Che" in ch2) or ("CHE" in ch2)) and ((("user" in ch2) or ("User" in ch2) or ("USER" in ch2)))) :
-            os.system("path")
+            os.system("ssh {} path")
         
         elif ((("list" in ch2) or ("List" in ch2) or ("LIST" in ch2)) and ((("file" in ch2) or ("File" in ch2) or ("FILE" in ch2)))) :
-            os.system("ls")
+            os.system("ssh {} ls".format(ip_add))
 
         elif ((("open" in ch2) or ("Open" in ch2) or ("OPEN" in ch2)) and (("editor" in ch2) or ("Editor" in ch2) or ("EDITOR" in ch2)))  :
-            os.system("vim")
+            os.system("ssh {} vi".format(ip_add))
 
         elif ((("cou" in ch2) or ("Cou" in ch2) or ("COU" in ch2)) and (("word" in ch2) or ("Word" in ch2) or "WORD" in ch2)) :
 
             fileName = input("Enter Name Of File Which You Want To Count : ")
-            os.system("cat {} | wc".format(fileName))
+            os.system("ssh {} cat {} | wc".format(ip_add,fileName))
 
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
@@ -78,25 +93,25 @@ def packManagement(ip_add):
 
         if ((("che" in ch2) or ("Che" in ch2) or ("CHE" in ch2)) and (("pac" in ch2) or ("Pac" in ch2) or ("PAC" in ch2))) :
             pack = input("Enter Package Name Which You Want To Check : ")
-            os.system("rpm -q {}".format(pack))
+            os.system("ssh {} rpm -q {}".format(ip_add,pack))
         elif ((("ins" in ch2) or ("Ins" in ch2) or ("INS" in ch2)) and (("pac" in ch2) or ("Pac" in ch2) or ("PAC" in ch2))) :
             pack = input("Enter Package Name Which You Want To Install : ")
-            x = os.system("rpm -q {}".format(pack))
+            x = os.system("ssh {} rpm -q {}".format(ip_add,pack))
             if x != 0 :
                 print("""
                     In your System {} not installed yet.
                     So we download it first and it will take some time
                 """.format(pack))
-                os.system("dnf install {} -y".format(pack))
+                os.system("ssh {} dnf install {} -y".format(ip_add,pack))
         elif (((("uni" in ch2) or ("Uni" in ch2) or ("Uni" in ch2)) or (("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) or (("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2))) and (("pac" in ch2) or ("Pac" in ch2) or ("PAC" in ch2))) :
             pack = input("Enter Package Name Which You Want To Uninstall : ")
-            x = os.system("rpm -q {}".format(pack))
+            x = os.system("ssh {} rpm -q {}".format(ip_add,pack))
             if x == 0 :
                 print("""
                     In your System {} installed .
                     So we remove it for you and it will take some time
                 """.format(pack))
-                os.system("dnf remove {} -y".format(pack))
+                os.system("ssh {} dnf remove {} -y".format(ip_add,pack))
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -106,22 +121,6 @@ def packManagement(ip_add):
             break
         else :
             print("No Match Found Please Try Again")
-
-
-                                        #Main Menu
-
-def mainMenu(ip_add):
-    os.system("tput setaf 1")
-    print("""
-                1 : Basic Operation
-                2 : Package Management
-                3 : User Management
-                4 : Networking
-                5 : Services Management
-                6 : Use Docker Management
-                7 : exit
-    """)
-    os.system("tput setaf 7")
 
 
 
@@ -151,37 +150,37 @@ def userManagement(ip_add):
         ch2 = input("Enter Your Choise : ")
 
         if ((("log" in ch2) or ("Log" in ch2) or ("LOG" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
-            os.system("whoami")
+            os.system("ssh {} whoami".format(ip_add))
         elif ((("user" in ch2) or ("User" in ch2) or ("USER" in ch2)) and (("name" in ch2) or ("Name" in ch2) or ("NAME" in ch2))) :
-            os.system("ls /home/")
+            os.system("ssh {} ls /home/".format(ip_add))
         elif ((("add" in ch2) or ("Add" in ch2) or ("ADD" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name : ")
-            os.system("useradd {}".format(userName))
-            os.system("passwd {}".format(userName))
+            os.system("ssh {} useradd {}".format(ip_add,userName))
+            os.system("ssh {} passwd {}".format(ip_add,userName))
             print("User added Successfuly")
         elif (((("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) or (("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2)) )and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name Which You want to Delete : ")
-            os.system("userdel {}".format(userName))
-            os.system("rm -rf /home/{}".format(userName))
+            os.system("ssh {} userdel {}".format(userName))
+            os.system("ssh {} rm -rf /home/{}".format(ip_add,userName))
             print("User Successfuly Remove")
         elif (((("cha" in ch2) or ("Cha" in ch2) or ("CHA" in ch2)) or (("upd" in ch2) or ("Upd" in ch2) or ("UPD" in ch2)) )and (("pass" in ch2) or ("Pass" in ch2) or ("PASS" in ch2))) :
             userName = input("Enter User Name which user Password you want to change : ")
-            os.system("passwd {}".format(userName))
+            os.system("ssh {} passwd {}".format(ip_add,userName))
             print("User Password Successfuly")
         elif ((("add" in ch2) or ("Add" in ch2) or ("ADD" in ch2)) and (("gro" in ch2) or ("Gro" in ch2) or ("GRO" in ch2))) :
             grpName = input("Enter Group Name : ")
-            os.system("groupadd {}".format(grpName))
+            os.system("ssh {} groupadd {}".format(ip_add,grpName))
             print("User added Successfuly")
         elif (((("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2)) or (("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) )and (("gro" in ch2) or ("Gro" in ch2) or ("GRO" in ch2))) :
             grpName = input("Enter Group Name which You Want To Delete : ")
-            os.system("groupdel {}".format(grpName))
-            print("User Deleted Successfuly")
+            os.system("ssh {} groupdel {}".format(ip_add,grpName))
+            print("User Deleted Successfuly".format(ip_add))
         elif ((("loc" in ch2) or ("Loc" in ch2) or ("LOC" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name Which User You Want To Lock : ")
-            os.system("usermod -l")
+            os.system("ssh {} usermod -l".format(ip_add))
         elif ((("unl" in ch2) or ("Unl" in ch2) or ("UNL" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name Which User You Want To Unlock : ")
-            os.system("usermod -u")
+            os.system("ssh {} usermod -u".format(ip_add))
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -215,21 +214,21 @@ def Networking(ip_add):
         ch2 = input("Enter Your Choise : ")
 
         if ((("check" in ch2) or ("Check" in ch2) or ("CHECK" in ch2)) and (("ip" in ch2) or ("Ip" in ch2) or ("IP" in ch2))) :
-            os.system("ifconfig")
+            os.system("ssh {} ifconfig".format(ip_add))
         elif ((("ins" in ch2) or ("Ins" in ch2) or ("INS" in ch2)) and (("httpd" in ch2) or ("Httpd" in ch2) or ("HTTPD" in ch2))) :
-            i = os.system("rpm -q httpd")
+            i = os.system("ssh {} rpm -q httpd".format(ip_add))
             if i != 0 :
                 print("""
                     In your System httpd not installed yet.
                     So we download it first and it will take some time
                 """)
-                os.system("dnf install httpd -y")
+                os.system("ssh {} dnf install httpd -y".format(ip_add))
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
-            os.system("systemctl start httpd")
+            os.system("ssh {} systemctl start httpd".format(ip_add))
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
-            os.system("systemctl stop httpd")
+            os.system("ssh {} systemctl stop httpd".format(ip_add))
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
-            os.system("systemctl status httpd")
+            os.system("ssh {} systemctl status httpd".format(ip_add))
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -266,24 +265,24 @@ def serviceManagement(ip_add):
         ch2 = input("Enter Your Choise : ")
 
         if ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
-            os.system("systemctl start httpd")
-            os.system("systemctl stop firewalld")
+            os.system("ssh {} systemctl start httpd".format(ip_add))
+            os.system("ssh {} systemctl stop firewalld".format(ip_add))
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
-            os.system("systemctl stop httpd")
+            os.system("ssh {} systemctl stop httpd".format(ip_add))
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
-            os.system("systemctl status httpd")
+            os.system("ssh {} systemctl status httpd".format(ip_add))
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("firewall" in ch2) or ("Firewall" in ch2) or ("FIREWALL" in ch2))) :
-            os.system("systemctl start firewalld")
+            os.system("ssh {} systemctl start firewalld".format(ip_add))
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("firewall" in ch2) or ("Firewall" in ch2) or ("FIREWALL" in ch2))) :
-            os.system("systemctl stop firewalld")
+            os.system("ssh {} systemctl stop firewalld".format(ip_add))
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("firewall" in ch2) or ("Firewall" in ch2) or ("FIREWALL" in ch2))) :
-            os.system("systemctl status firewalld")
+            os.system("ssh {} systemctl status firewalld".format(ip_add))
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
-            os.system("systemctl start docker")
+            os.system("ssh {} systemctl start docker".format(ip_add))
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
-            os.system("systemctl stop docker")
+            os.system("ssh {} systemctl stop docker".format(ip_add))
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
-            os.system("systemctl status docker")
+            os.system("ssh {} systemctl status docker".format(ip_add))
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -322,7 +321,7 @@ def dockerManagement(ip_add):
         ch2 = input("Enter Your Choise : ")
 
         if ((("download" in ch2) or ("Download" in ch2) or ("DOWNLOAD" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
-            x = os.system("rpm -q docker-ce")
+            x = os.system("ssh {} rpm -q docker-ce".format(ip_add))
             if x != 0 :
 
                 net = os.system("dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo")
@@ -330,25 +329,25 @@ def dockerManagement(ip_add):
                     Print("Please Check Your Internet Connection And Try Again")
                 else :
                     print("It Will Take Time According To Your Internet Speed" , end = "\n\n")
-                    inst = os.system("dnf install docker-ce --nobest -y")
+                    inst = os.system("ssh {} dnf install docker-ce --nobest -y".format(ip_add))
                     if inst != 0 :
                         print("Some Problem Occur Please Try Agian")
                     else :
-                        os.system("firewall-cmd  --permanent --zone=public --add-masquerade")
-                        os.system("firewall-cmd --reload")
-                        os.system("systemctl restart docker")
+                        os.system("ssh {} firewall-cmd  --permanent --zone=public --add-masquerade".format(ip_add))
+                        os.system("ssh {} firewall-cmd --reload".format(ip_add))
+                        os.system("ssh {} systemctl restart docker".format(ip_add))
                         print("Docker Successfully Install In Your System")
 
 
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
-            os.system("systemctl start docker")
+            os.system("ssh {} systemctl start docker".format(ip_add))
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
-            os.system("systemctl status docker")
+            os.system("ssh {} systemctl status docker".format(ip_add))
         elif ((("pull" in ch2) or ("Pull" in ch2) or ("PULL" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             image = input("Enter Image Name :-  ")
             version = input("Enter Version :- ")
             cmd = "docker pull {}:{}".format(image,version)
-            os.system("cmd")
+            os.system("ssh {} cmd".format(ip_add))
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 

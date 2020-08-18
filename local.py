@@ -3,6 +3,21 @@
 import os
 os.system("clear")
 
+                                        #Main Menu
+
+def mainMenu():
+    os.system("tput setaf 1")
+    print("""
+                1 : Basic Operation
+                2 : Package Management
+                3 : User Management
+                4 : Networking
+                5 : Services Management
+                6 : Use Docker Management
+                7 : exit
+    """)
+    os.system("tput setaf 7")
+
 
                                     # Basic Operation
 def basicOperation():
@@ -107,22 +122,6 @@ def packManagement():
             break
         else :
             print("No Match Found Please Try Again")
-
-
-                                        #Main Menu
-
-def mainMenu():
-    os.system("tput setaf 1")
-    print("""
-                1 : Basic Operation
-                2 : Package Management
-                3 : User Management
-                4 : Networking
-                5 : Services Management
-                6 : Use Docker Management
-                7 : exit
-    """)
-    os.system("tput setaf 7")
 
 
 
