@@ -8,13 +8,13 @@ os.system("clear")
 def mainMenu():
     os.system("tput setaf 1")
     print("""
-                1 : Basic Operation
-                2 : Package Management
-                3 : User Management
-                4 : Networking
-                5 : Services Management
-                6 : Use Docker Management
-                7 : exit
+                \t 1 : Basic Operation
+                \t 2 : Package Management
+                \t 3 : User Management
+                \t 4 : Networking
+                \t 5 : Services Management
+                \t 6 : Use Docker Management
+                \t 7 : exit
     """)
     os.system("tput setaf 7")
 
@@ -27,14 +27,14 @@ def basicOperation():
         print("You Select Basic Operation" , end = "\n\n")
         print("""
 
-                1: check system date
-                2: System Calender
-                3: Check Currently User Name
-                4: Currently Working Ditectory
-                5: Listing Of File
-                6. Open Editor
-                7: Count Number Of Words In A File
-                8: exit
+                \t 1: check system date
+                \t 2: System Calender
+                \t 3: Check Currently User Name
+                \t 4: Currently Working Ditectory
+                \t 5: Listing Of File
+                \t 6. Open Editor
+                \t 7: Count Number Of Words In A File
+                \t 8: exit
 
         """)
         os.system("tput setaf 7")
@@ -70,6 +70,7 @@ def basicOperation():
 
             """)
             break
+        
         else :
             print("No Match Found Please Try Again")
     
@@ -83,10 +84,10 @@ def packManagement():
         print("You Select Package Management" , end = "\n\n")
         print("""
 
-                1: Check Package Install Or Not
-                2: Install Package
-                3: Remove Package
-                4: exit
+                \t 1: Check Package Install Or Not
+                \t 2: Install Package
+                \t 3: Remove Package
+                \t 4: exit
 
         """)
         os.system("tput setaf 7")
@@ -95,6 +96,7 @@ def packManagement():
         if ((("che" in ch2) or ("Che" in ch2) or ("CHE" in ch2)) and (("pac" in ch2) or ("Pac" in ch2) or ("PAC" in ch2))) :
             pack = input("Enter Package Name Which You Want To Check : ")
             os.system("rpm -q {}".format(pack))
+        
         elif ((("ins" in ch2) or ("Ins" in ch2) or ("INS" in ch2)) and (("pac" in ch2) or ("Pac" in ch2) or ("PAC" in ch2))) :
             pack = input("Enter Package Name Which You Want To Install : ")
             x = os.system("rpm -q {}".format(pack))
@@ -104,6 +106,7 @@ def packManagement():
                     So we download it first and it will take some time
                 """.format(pack))
                 os.system("dnf install {} -y".format(pack))
+        
         elif (((("uni" in ch2) or ("Uni" in ch2) or ("Uni" in ch2)) or (("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) or (("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2))) and (("pac" in ch2) or ("Pac" in ch2) or ("PAC" in ch2))) :
             pack = input("Enter Package Name Which You Want To Uninstall : ")
             x = os.system("rpm -q {}".format(pack))
@@ -113,6 +116,7 @@ def packManagement():
                     So we remove it for you and it will take some time
                 """.format(pack))
                 os.system("dnf remove {} -y".format(pack))
+        
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -134,16 +138,16 @@ def userManagement():
         os.system("tput setaf 1")
         print("""
 
-                    1:  Check Current Login User
-                    2:  Show All User Name
-                    3:  Add User
-                    4:  Remove User
-                    5:  Change Password Of A User
-                    6:  Add Group
-                    7:  Remove Group
-                    8:  lock User
-                    9:  Unlock User
-                    10:  exit
+                    \t  1:  Check Current Login User
+                    \t 2:  Show All User Name
+                    \t 3:  Add User
+                    \t 4:  Remove User
+                    \t 5:  Change Password Of A User
+                    \t 6:  Add Group
+                    \t 7:  Remove Group
+                    \t 8:  lock User
+                    \t 9:  Unlock User
+                    \t 10:  exit
 
         """)
         os.system("tput setaf 7")
@@ -152,36 +156,45 @@ def userManagement():
 
         if ((("log" in ch2) or ("Log" in ch2) or ("LOG" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             os.system("whoami")
+        
         elif ((("user" in ch2) or ("User" in ch2) or ("USER" in ch2)) and (("name" in ch2) or ("Name" in ch2) or ("NAME" in ch2))) :
             os.system("ls /home/")
+        
         elif ((("add" in ch2) or ("Add" in ch2) or ("ADD" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name : ")
             os.system("useradd {}".format(userName))
             os.system("passwd {}".format(userName))
             print("User added Successfuly")
+        
         elif (((("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) or (("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2)) )and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name Which You want to Delete : ")
             os.system("userdel {}".format(userName))
             os.system("rm -rf /home/{}".format(userName))
             print("User Successfuly Remove")
+        
         elif (((("cha" in ch2) or ("Cha" in ch2) or ("CHA" in ch2)) or (("upd" in ch2) or ("Upd" in ch2) or ("UPD" in ch2)) )and (("pass" in ch2) or ("Pass" in ch2) or ("PASS" in ch2))) :
             userName = input("Enter User Name which user Password you want to change : ")
             os.system("passwd {}".format(userName))
             print("User Password Successfuly")
+        
         elif ((("add" in ch2) or ("Add" in ch2) or ("ADD" in ch2)) and (("gro" in ch2) or ("Gro" in ch2) or ("GRO" in ch2))) :
             grpName = input("Enter Group Name : ")
             os.system("groupadd {}".format(grpName))
             print("User added Successfuly")
+        
         elif (((("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2)) or (("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) )and (("gro" in ch2) or ("Gro" in ch2) or ("GRO" in ch2))) :
             grpName = input("Enter Group Name which You Want To Delete : ")
             os.system("groupdel {}".format(grpName))
             print("User Deleted Successfuly")
+        
         elif ((("loc" in ch2) or ("Loc" in ch2) or ("LOC" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name Which User You Want To Lock : ")
             os.system("usermod -l")
+        
         elif ((("unl" in ch2) or ("Unl" in ch2) or ("UNL" in ch2)) and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name Which User You Want To Unlock : ")
             os.system("usermod -u")
+        
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -189,6 +202,7 @@ def userManagement():
 
             """)
             break
+        
         else :
             print("No Match Found Please Try Again")
 
@@ -201,12 +215,12 @@ def Networking():
         os.system("tput setaf 1")
         print("""
 
-                    1:  Check IP Address
-                    2:  Istall HTTPD
-                    3:  Start Services Of Web Server
-                    4:  Stop Services Of Web Server
-                    5:  Check Status Of Web Server
-                    6:  exit
+                    \t 1:  Check IP Address
+                    \t 2:  Istall HTTPD
+                    \t 3:  Start Services Of Web Server
+                    \t 4:  Stop Services Of Web Server
+                    \t 5:  Check Status Of Web Server
+                    \t 6:  exit
 
         """)
         os.system("tput setaf 7")
@@ -216,6 +230,7 @@ def Networking():
 
         if ((("check" in ch2) or ("Check" in ch2) or ("CHECK" in ch2)) and (("ip" in ch2) or ("Ip" in ch2) or ("IP" in ch2))) :
             os.system("ifconfig")
+        
         elif ((("ins" in ch2) or ("Ins" in ch2) or ("INS" in ch2)) and (("httpd" in ch2) or ("Httpd" in ch2) or ("HTTPD" in ch2))) :
             i = os.system("rpm -q httpd")
             if i != 0 :
@@ -224,12 +239,16 @@ def Networking():
                     So we download it first and it will take some time
                 """)
                 os.system("dnf install httpd -y")
+        
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
             os.system("systemctl start httpd")
+        
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
             os.system("systemctl stop httpd")
+        
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
             os.system("systemctl status httpd")
+        
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -237,6 +256,7 @@ def Networking():
 
             """)
             break
+        
         else :
             print("No Match Found Please Try Again")
 
@@ -248,16 +268,16 @@ def serviceManagement():
         oa.system("tput setaf 1")
         print("""
 
-                    1:  Start Services Of Web Server
-                    2:  Stop Services Of Web Server
-                    3:  Check Status Of Web Server
-                    4:  Start Services Of Firewall
-                    5:  Stop Services Of Firewall
-                    6:  Check Status Of Firewall
-                    7:  Start Services Of Docker
-                    8:  Stop Services Of Docker
-                    9:  Check Status Of Docker
-                    10:  exit
+                    \t 1:  Start Services Of Web Server
+                    \t 2:  Stop Services Of Web Server
+                    \t 3:  Check Status Of Web Server
+                    \t 4:  Start Services Of Firewall
+                    \t 5:  Stop Services Of Firewall
+                    \t 6:  Check Status Of Firewall
+                    \t 7:  Start Services Of Docker
+                    \t 8:  Stop Services Of Docker
+                    \t 9:  Check Status Of Docker
+                    \t 10:  exit
 
         """)
         os.system("tput setaf 7")
@@ -268,22 +288,31 @@ def serviceManagement():
         if ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
             os.system("systemctl start httpd")
             os.system("systemctl stop firewalld")
+        
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
             os.system("systemctl stop httpd")
+        
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
             os.system("systemctl status httpd")
+        
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("firewall" in ch2) or ("Firewall" in ch2) or ("FIREWALL" in ch2))) :
             os.system("systemctl start firewalld")
+        
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("firewall" in ch2) or ("Firewall" in ch2) or ("FIREWALL" in ch2))) :
             os.system("systemctl stop firewalld")
+        
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("firewall" in ch2) or ("Firewall" in ch2) or ("FIREWALL" in ch2))) :
             os.system("systemctl status firewalld")
+        
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             os.system("systemctl start docker")
+        
         elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             os.system("systemctl stop docker")
+        
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             os.system("systemctl status docker")
+        
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -303,17 +332,18 @@ def dockerManagement():
         os.system("tput setaf 1")
         print("""
 
-                    1:   Download Docker In Your System
-                    2:   Start Services Of Docker
-                    3:   Check Status Of Docker
-                    4:   Pull Docker Image
-                    5:   See All Docker Images In your System
-                    6:   Run A Docker Container
-                    7:   See All Currently Running Docker Container
-                    8:   Stop Services Of Docker
-                    9:   Remove Docker Container
-                    10:  Remove All Running Docker Container
-                    11:   exit
+                    \t 1:    Download Docker In Your System
+                    \t 2:    Start Services Of Docker
+                    \t 3:    Check Status Of Docker
+                    \t 4:    Pull Docker Image
+                    \t 5:    See All Docker Images In your System
+                    \t 6:    Run A Simple Docker Container
+                    \t 7:    See All Currently Running Docker Container
+                    \t 8:    See All Container Either Runnig Or Stop
+                    \t 9:    Remove One Docker Container 
+                    \t 10:   Remove All Running Docker Container 
+                    \t 11:   Stop Services Of Docker
+                    \t 12:   exit
 
         """)
         os.system("tput setaf 7")
@@ -342,13 +372,41 @@ def dockerManagement():
 
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             os.system("systemctl start docker")
+        
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             os.system("systemctl status docker")
+        
         elif ((("pull" in ch2) or ("Pull" in ch2) or ("PULL" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             image = input("Enter Image Name :-  ")
             version = input("Enter Version :- ")
             cmd = "docker pull {}:{}".format(image,version)
             os.system("cmd")
+
+        elif ((("all" in ch2) or ("All" in ch2) or ("ALL" in ch2)) and (("imag" in ch2) or ("Imag" in ch2) or ("IMAG" in ch2))) :
+            os.system("docker images")
+        
+        elif ((("run" in ch2) or ("Run" in ch2) or ("RUN" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
+            name = input("Enter name which you want to give :- ")
+            image = input("Enter image name :- ")
+            tag = input("Enter Image tag :- ")
+            os.system("docker run -dit --name {} {}:{}".format(name,image,tag))
+        
+        elif ((("curr" in ch2) or ("Curr" in ch2) or ("CURR" in ch2)) and (("run" in ch2) or ("Run" in ch2) or ("RUN" in ch2)) and (("cont" in ch2) or ("Cont" in ch2) or ("CONT" in ch2))) :
+            os.system("docker ps")
+
+        elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("run" in ch2) or ("Run" in ch2) or ("RUN" in ch2)) and (("cont" in ch2) or ("Cont" in ch2) or ("CONT" in ch2))) :
+            os.system("docker ps -a")
+        
+        elif (((("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) and (("one" in ch2) or ("One" in ch2) or ("ONE" in ch2)) )and (("cont" in ch2) or ("Cont" in ch2) or ("CONT" in ch2))) :
+            name = input("Enter Name of Id of container which you want to remove :- ")
+            os.system("docker rm -f {}")
+
+        elif (((("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) and (("all" in ch2) or ("All" in ch2) or ("ALL" in ch2)) )and (("cont" in ch2) or ("Cont" in ch2) or ("CONT" in ch2))) :
+            os.system("docker rm -f $(docker ps -aq)")
+
+        elif ((("stop" in ch2) or ("Stop" in ch2) or ("STOP" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
+            os.system("systemctl stop docker")
+        
         elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
             print("""
 
@@ -356,5 +414,6 @@ def dockerManagement():
 
             """)
             break
+        
         else :
             print("No Match Found Please Try Again")

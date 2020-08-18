@@ -85,23 +85,24 @@ while (1) :
             print("You Select Remote System")
             print("Enter Only working IP")
             ip_add = input("Enter the ip Address of Remote System: - ")
+            print("""
+                    Through ssh key-gen you don't need to enter remote password
+                    again and again
+                """)
+            key = input("Have you Generate ssh-keygen in our system (yes/no) :- ")
+            if (("no" in key) or ("No" in key) or ("NO" in key) or ("not" in key) or ("Not" in key) or ("NOT" in key)) :
+                os.system("ssh-keygen")
+                os.system("ssh-copy-id root@{}".format(ip_add))
+
+            elif ((("yes" in key) or ("Yes" in key) or ("YES" in key))) :
+                os.system("ssh-copy-id root@{}".format(ip_add))
+            else :
+                print("No Match Found Please Try Again")
             while (1):
                 mainMenu(ip_add)
                 os.system("tput setaf 7")
 
-                print("""
-                    Through ssh key-gen you don't need to enter remote password
-                    again and again
-                """)
-                key = input("Have you Generate ssh-keygen in our system (yes/no) :- ")
-                if (("no" in key) or ("No" in key) or ("NO" in key) or ("not" in key) or ("Not" in key) or ("NOT" in key)) :
-                    os.system("ssh-keygen")
-                    os.system("ssh-copy-id root@{}".format(ip_add))
-
-                elif ((("yes" in key) or ("Yes" in key) or ("YES" in key))) :
-                    os.system("ssh-copy-id root@{}".format(ip_add))
-                else :
-                    print("No Match Found Please Try Again")
+                
 
                 ch1 = input("Enter Your Choice : ")
                 if (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :

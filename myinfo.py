@@ -1,10 +1,11 @@
+import os
 def MyDetails():
         os.system("tput setaf 3")
         print("""
 
-                        Name : Shubham Jangid
-                        Course : #IIEC_RISE #Python
-                        Mobile NUmber : 9649543318
-                        Email : shubhamjangid532@gmail.com
+                        \t Name : Shubham Jangid
+                        \t Course : #IIEC_RISE #Python
+                        \t Mobile NUmber : 9649543318
+                        \t Email : shubhamjangid532@gmail.com
         """)
         os.system("tput setaf 7")
