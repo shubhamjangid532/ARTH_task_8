@@ -44,6 +44,10 @@ while (1) :
                     packManagement()
                     os.system("tput setaf 7")
 
+                elif ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
+                    permission()
+                    os.system("tput setaf 7")
+
 
                 elif ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
                     
@@ -123,6 +127,9 @@ while (1) :
                     packManagement(ip_add)
                     os.system("tput setaf 7")
 
+                elif ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
+                    permission(ip_add)
+                    os.system("tput setaf 7")
 
                 elif ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
                     

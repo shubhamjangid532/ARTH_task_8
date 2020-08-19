@@ -11,9 +11,10 @@ def mainMenu(ip_add):
                 \t 2 : Package Management
                 \t 3 : User Management
                 \t 4 : Networking
-                \t 5 : Services Management
-                \t 6 : Use Docker Management
-                \t 7 : exit
+                \t 5 : Permissions 
+                \t 6 : Services Management
+                \t 7 : Use Docker Management
+                \t 8 : exit
     """)
     os.system("tput setaf 7")
 
@@ -416,5 +417,270 @@ def dockerManagement(ip_add):
             """)
             break
         
+        else :
+            print("No Match Found Please Try Again")
+
+                            # Permissions
+def permission(ip_add) :
+    while (1) :
+
+        print("""
+                1. give rwx permission to a file
+                2. revoke rwx permission to a file
+                3. Giev rwx permission to a folder/directory
+                4. revoke rwx permission to a folder/directory
+                5. exit
+
+            """)
+        opr = input("Enter Yor Requirment from the given operation :- ")
+        if (("give" in opr) or ("Give" in opr) or ("GIVE" in opr) and  ("file" in opr) or ("File" in opr) or ("FILE" in opr)) :
+            user = input("Enter User type (user, group, other) :- ")
+
+            if (("user" in user) or ("User" in user) or ("USER" in user)) :                                                               
+                u = "u"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to User : - ") 
+                file_name = input("Enter File Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}+{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
+                u = "g"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to Group : - ")
+                file_name = input("Enter File Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}+{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
+                u = "o"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to Other : - ")
+                file_name = input("Enter File Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}+{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            else :
+                print("No match found please try again")
+            
+        elif (("re" in opr) or ("Re" in opr) or ("RE" in opr) and  ("file" in opr) or ("File" in opr) or ("FILE" in opr)) :
+            user = input("Enter User type (user, group, other) :- ")
+
+            if (("user" in user) or ("User" in user) or ("USER" in user)) :
+                u = "u"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to User : - ")
+                file_name = input("Enter File Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}-{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
+                u = "g"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to Group : - ")
+                file_name = input("Enter File Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}-{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
+                u = "o"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """) 
+                permission = input("Enter Which permission you want give to Other : - ")
+                file_name = input("Enter File Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}-{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)                                                                                                              
+            
+            else :
+                print("No match found please try again")
+                
+
+            
+        elif (("give" in opr) or ("Give" in opr) or ("GIVE" in opr) and  ("dir" in opr) or ("Dir" in opr) or ("DIR" in opr) or ("fol" in opr) or ("Fol" in opr) or ("FOL" in opr)) :
+            user = input("Enter User type (user, group, other) :- ")
+
+            if (("user" in user) or ("User" in user) or ("USER" in user)) :                                                               
+                u = "u"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to User : - ")
+                fold_name = input("Enter Folder Name Which permission you want to change :- ")
+                path = input("Enter Folder path :- ")
+                cmd = "chmod {}+{} {}/{}".format(u,permission,path,fold_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
+                u = "g"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to Group : - ")
+                fold_name = input("Enter Folder Name Which permission you want to change :- ")
+                path = input("Enter Folder path :- ")
+                cmd = "chmod {}+{} {}/{}".format(u,permission,path,fold_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
+                u = "o"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to Other : - ")
+                fold_name = input("Enter Folder Name Which permission you want to change :- ")
+                path = input("Enter Folder path :- ")
+                cmd = "chmod {}+{} {}/{}".format(u,permission,path,fold_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)                                                                                                               
+            else :
+                print("No match found please try again")
+
+        elif (("re" in opr) or ("Re" in opr) or ("RE" in opr) and  ("dir" in opr) or ("Dir" in opr) or ("DIR" in opr) or ("fol" in opr) or ("Fol" in opr) or ("FOL" in opr)) :
+            user = input("Enter User type (user, group, other) :- ")
+
+            if (("user" in user) or ("User" in user) or ("USER" in user)) :                                                               
+                u = "u"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to User : - ")
+                file_name = input("Enter Folder Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}-{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
+                u = "g"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to Group : - ")
+                file_name = input("Enter Folder Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}-{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
+                u = "o"
+                print("""
+                
+                    for read permission press r
+                    for write permission press w
+                    for exicute/run permission press x
+                    for both read and write press rw 
+                    and so on
+
+                """)
+                permission = input("Enter Which permission you want give to Other : - ")
+                file_name = input("Enter Folder Name Which permission you want to change :- ")
+                path = input("Enter file path :- ")
+                cmd = "chmod {}-{} {}/{}".format(u,permission,path,file_name)
+                print(cmd)
+                os.system("ssh {} ",format(ip_add) + cmd)
+
+            elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
+                print("""
+
+                    You exit For Current Menu
+
+                """)
+                break
+            
+            else :
+                print("No match found please try again")
+            
         else :
             print("No Match Found Please Try Again")
