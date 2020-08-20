@@ -411,6 +411,7 @@ def r_dockerManagement(ip_add):
 def r_permission(ip_add) :
     while (1) :
 
+        os.system("tput setaf 1")
         print("""
                 1. give rwx permission to a file
                 2. revoke rwx permission to a file
@@ -419,6 +420,7 @@ def r_permission(ip_add) :
                 5. exit
 
             """)
+        os.system("tput setaf 7")
         opr = input("Enter Yor Requirment from the given operation :- ")
         if (("give" in opr) or ("Give" in opr) or ("GIVE" in opr) and  ("file" in opr) or ("File" in opr) or ("FILE" in opr)) :
             user = input("Enter User type (user, group, other) :- ")
@@ -573,5 +575,12 @@ def r_permission(ip_add) :
             else :
                 print("No match found please try again")
             
+        elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
+            print("""
+
+                You exit For Current Menu
+
+            """)
+            break
         else :
             print("No Match Found Please Try Again")
