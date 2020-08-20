@@ -1,4 +1,4 @@
-                                                                #Main Menu
+import os                                                                #Main Menu
 
 def mainMenu():
     os.system("tput setaf 1")
