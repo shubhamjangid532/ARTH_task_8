@@ -32,8 +32,8 @@ def r_basicOperation(ip_add):
         elif ((("curr" in ch2) or ("Curr" in ch2) or ("Curr" in ch2) or ("che" in ch2) or ("Che" in ch2) or ("CHE" in ch2)) and ((("user" in ch2) or ("User" in ch2) or ("USER" in ch2)))) :
             os.system("ssh {} whoami".format(ip_add))
 
-        elif ((("curr" in ch2) or ("Curr" in ch2) or ("Curr" in ch2) or ("che" in ch2) or ("Che" in ch2) or ("CHE" in ch2)) and ((("user" in ch2) or ("User" in ch2) or ("USER" in ch2)))) :
-            os.system("ssh {} path")
+        elif ((("curr" in ch2) or ("Curr" in ch2) or ("Curr" in ch2) ) and ((("dir" in ch2) or ("Dir" in ch2) or ("DIR" in ch2) or ("fol" in ch2) or ("Fol" in ch2) or ("FOL" in ch2)))) :
+            os.system("ssh {} path".format(ip_add))
         
         elif ((("list" in ch2) or ("List" in ch2) or ("LIST" in ch2)) and ((("file" in ch2) or ("File" in ch2) or ("FILE" in ch2)))) :
             os.system("ssh {} ls".format(ip_add))
@@ -154,7 +154,7 @@ def r_userManagement(ip_add):
         
         elif (((("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) or (("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2)) )and (("user" in ch2) or ("User" in ch2) or ("USER" in ch2))) :
             userName = input("Enter User Name Which You want to Delete : ")
-            os.system("ssh {} userdel {}".format(userName))
+            os.system("ssh {} userdel {}".format(ip_add,userName))
             os.system("ssh {} rm -rf /home/{}".format(ip_add,userName))
             print("User Successfuly Remove")
         
