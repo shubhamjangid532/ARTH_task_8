@@ -1,7 +1,8 @@
+import os
+from com_fun import *
 from local import *
 from myinfo import *
 from remote import *
-import os
 
 while (1) :
         os.system("tput setaf 1")
@@ -11,13 +12,7 @@ while (1) :
         MyDetails()
 
         print()
-        print("""
-        
-            1. Own System
-            2. Remote System
-            3. Exit
-
-        """)
+        selection()
         inp = input("Enter Where You Want To Perform Operation :- ")
         if (("own" in inp) or ("Own" in inp) or ("OWN" in inp) or ("local" in inp) or ("Local" in inp) or ("LOCAL" in inp)) :
 
@@ -36,41 +31,37 @@ while (1) :
 
                 elif ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
                     
-                    basicOperation()
+                    l_basicOperation()
                     os.system("tput setaf 7")
 
 
                 elif ((("pack" in ch1) or ("Pack" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    packManagement()
+                    l_packManagement()
                     os.system("tput setaf 7")
 
                 elif ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
-                    permission()
+                    l_permission()
                     os.system("tput setaf 7")
 
 
                 elif ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    
-                    
-                    userManagement()
+                    l_userManagement()
                     os.system("tput setaf 7")
 
 
                 elif ((("net" in ch1) or ("Net" in ch1))) :
-                
-                    Networking()
+                    l_Networking()
                     os.system("tput setaf 7")
 
 
                 elif ((("serv" in ch1) or ("Serv" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    
-                    serviceManagement()
+                    l_serviceManagement()
                     os.system("tput setaf 7")
 
 
                 elif ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
                     
-                    dockerManagement()
+                    l_dockerManagement()
                     os.system("tput setaf 7")
                 else :
                     print("No Match Found Please Try Again")
@@ -103,7 +94,7 @@ while (1) :
             else :
                 print("No Match Found Please Try Again")
             while (1):
-                mainMenu(ip_add)
+                mainMenu()
                 os.system("tput setaf 7")
 
                 
@@ -119,40 +110,40 @@ while (1) :
 
                 elif ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
                     
-                    basicOperation(ip_add)
+                    r_basicOperation(ip_add)
                     os.system("tput setaf 7")
 
 
                 elif ((("pack" in ch1) or ("Pack" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    packManagement(ip_add)
+                    r_packManagement(ip_add)
                     os.system("tput setaf 7")
 
                 elif ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
-                    permission(ip_add)
+                    r_permission(ip_add)
                     os.system("tput setaf 7")
 
                 elif ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
                     
                     
-                    userManagement(ip_add)
+                    r_userManagement(ip_add)
                     os.system("tput setaf 7")
 
 
                 elif ((("net" in ch1) or ("Net" in ch1))) :
                 
-                    Networking(ip_add)
+                    r_Networking(ip_add)
                     os.system("tput setaf 7")
 
 
                 elif ((("serv" in ch1) or ("Serv" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
                     
-                    serviceManagement(ip_add)
+                    r_serviceManagement(ip_add)
                     os.system("tput setaf 7")
 
 
                 elif ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
                     
-                    dockerManagement(ip_add)
+                    r_dockerManagement(ip_add)
                     os.system("tput setaf 7")
                 else :
                     print("No Match Found Please Try Again")
@@ -169,7 +160,7 @@ while (1) :
             os.system("clear")
 
         
-        elif (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
+        elif (("exit" in inp) or ("quit" in inp) or ("Exit" in inp) or ("Quit" in inp)) :
             print("""
 
                 You exit For Current Menu

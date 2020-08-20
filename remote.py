@@ -2,25 +2,8 @@
 import os 
 os.system("clear")
 
-                                        #Main Menu
-
-def mainMenu(ip_add):
-    os.system("tput setaf 1")
-    print("""
-                \t 1 : Basic Operation
-                \t 2 : Package Management
-                \t 3 : User Management
-                \t 4 : Networking
-                \t 5 : Permissions 
-                \t 6 : Services Management
-                \t 7 : Use Docker Management
-                \t 8 : exit
-    """)
-    os.system("tput setaf 7")
-
-
                                     # Basic Operation
-def basicOperation(ip_add):
+def r_basicOperation(ip_add):
     i = 1
     while (1) :
         os.system("tput setaf 1")
@@ -78,7 +61,7 @@ def basicOperation(ip_add):
 
                                     #Package Management
 
-def packManagement(ip_add):
+def r_packManagement(ip_add):
     while (1):
         os.system("tput setaf 1")
         print("You Select Package Management" , end = "\n\n")
@@ -106,6 +89,8 @@ def packManagement(ip_add):
                     So we download it first and it will take some time
                 """.format(pack))
                 os.system("ssh {} dnf install {} -y".format(ip_add,pack))
+            else : 
+                print("{} already in our system".format(pack))
         
         elif (((("uni" in ch2) or ("Uni" in ch2) or ("Uni" in ch2)) or (("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) or (("del" in ch2) or ("Del" in ch2) or ("DEL" in ch2))) and (("pac" in ch2) or ("Pac" in ch2) or ("PAC" in ch2))) :
             pack = input("Enter Package Name Which You Want To Uninstall : ")
@@ -133,7 +118,7 @@ def packManagement(ip_add):
 
                                     #UserManagement
 
-def userManagement(ip_add):
+def r_userManagement(ip_add):
     while (1):
         print("You Select User Management" , end = "\n\n")
         os.system("tput setaf 1")
@@ -210,7 +195,7 @@ def userManagement(ip_add):
 
                                  #Networking
 
-def Networking(ip_add):
+def r_Networking(ip_add):
     while (1) :    
         print("You Select Networking " , end = "\n\n")
         os.system("tput setaf 1")
@@ -240,6 +225,8 @@ def Networking(ip_add):
                     So we download it first and it will take some time
                 """)
                 os.system("ssh {} dnf install httpd -y".format(ip_add))
+            else : 
+                print("httpd already install in our system")
         
         elif ((("start" in ch2) or ("Start" in ch2) or ("START" in ch2)) and (("web" in ch2) or ("Web" in ch2) or ("WEB" in ch2))) :
             os.system("ssh {} systemctl start httpd".format(ip_add))
@@ -263,10 +250,10 @@ def Networking(ip_add):
 
 
                                 #Service Management
-def serviceManagement(ip_add):
+def r_serviceManagement(ip_add):
     while (1) :
         print("You Select Services Management " , end = "\n\n")
-        oa.system("tput setaf 1")
+        os.system("tput setaf 1")
         print("""
 
                     \t 1:  Start Services Of Web Server
@@ -328,7 +315,7 @@ def serviceManagement(ip_add):
 
 
                                         # Docker Management
-def dockerManagement(ip_add):
+def r_dockerManagement(ip_add):
     while (1) :
         print("You Select Docker Management " , end = "\n\n")
         os.system("tput setaf 1")
@@ -421,7 +408,7 @@ def dockerManagement(ip_add):
             print("No Match Found Please Try Again")
 
                             # Permissions
-def permission(ip_add) :
+def r_permission(ip_add) :
     while (1) :
 
         print("""
@@ -438,15 +425,7 @@ def permission(ip_add) :
 
             if (("user" in user) or ("User" in user) or ("USER" in user)) :                                                               
                 u = "u"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to User : - ") 
                 file_name = input("Enter File Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -456,15 +435,7 @@ def permission(ip_add) :
 
             elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
                 u = "g"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to Group : - ")
                 file_name = input("Enter File Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -474,15 +445,7 @@ def permission(ip_add) :
 
             elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
                 u = "o"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to Other : - ")
                 file_name = input("Enter File Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -498,15 +461,7 @@ def permission(ip_add) :
 
             if (("user" in user) or ("User" in user) or ("USER" in user)) :
                 u = "u"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to User : - ")
                 file_name = input("Enter File Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -516,15 +471,7 @@ def permission(ip_add) :
 
             elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
                 u = "g"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to Group : - ")
                 file_name = input("Enter File Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -534,15 +481,7 @@ def permission(ip_add) :
 
             elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
                 u = "o"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """) 
+                per_opt() 
                 permission = input("Enter Which permission you want give to Other : - ")
                 file_name = input("Enter File Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -560,15 +499,7 @@ def permission(ip_add) :
 
             if (("user" in user) or ("User" in user) or ("USER" in user)) :                                                               
                 u = "u"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to User : - ")
                 fold_name = input("Enter Folder Name Which permission you want to change :- ")
                 path = input("Enter Folder path :- ")
@@ -578,15 +509,7 @@ def permission(ip_add) :
 
             elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
                 u = "g"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to Group : - ")
                 fold_name = input("Enter Folder Name Which permission you want to change :- ")
                 path = input("Enter Folder path :- ")
@@ -596,15 +519,7 @@ def permission(ip_add) :
 
             elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
                 u = "o"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to Other : - ")
                 fold_name = input("Enter Folder Name Which permission you want to change :- ")
                 path = input("Enter Folder path :- ")
@@ -619,15 +534,7 @@ def permission(ip_add) :
 
             if (("user" in user) or ("User" in user) or ("USER" in user)) :                                                               
                 u = "u"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to User : - ")
                 file_name = input("Enter Folder Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -637,15 +544,7 @@ def permission(ip_add) :
 
             elif (("group" in user) or ("Group" in user) or ("GROUP" in user)) :
                 u = "g"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to Group : - ")
                 file_name = input("Enter Folder Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
@@ -655,15 +554,7 @@ def permission(ip_add) :
 
             elif (("other" in user) or ("Other" in user) or ("OTHER" in user)) :
                 u = "o"
-                print("""
-                
-                    for read permission press r
-                    for write permission press w
-                    for exicute/run permission press x
-                    for both read and write press rw 
-                    and so on
-
-                """)
+                per_opt()
                 permission = input("Enter Which permission you want give to Other : - ")
                 file_name = input("Enter Folder Name Which permission you want to change :- ")
                 path = input("Enter file path :- ")
