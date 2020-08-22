@@ -1,6 +1,7 @@
                             # Operation For local user
 
 import os
+from com_fun import *
 os.system("clear")
 
 
@@ -35,7 +36,7 @@ def l_basicOperation():
             os.system("whoami")
 
         elif ((("curr" in ch2) or ("Curr" in ch2) or ("Curr" in ch2) ) and ((("dir" in ch2) or ("Dir" in ch2) or ("DIR" in ch2) or ("fol" in ch2) or ("Fol" in ch2) or ("FOL" in ch2)))) :
-            os.system("path")
+            os.system("pwd")
         
         elif ((("list" in ch2) or ("List" in ch2) or ("LIST" in ch2)) and ((("file" in ch2) or ("File" in ch2) or ("FILE" in ch2)))) :
             os.system("ls")
@@ -324,15 +325,14 @@ def l_dockerManagement():
                     \t 1:    Download Docker In Your System
                     \t 2:    Start Services Of Docker
                     \t 3:    Check Status Of Docker
-                    \t 4:    Pull Docker Image
-                    \t 5:    See All Docker Images In your System
-                    \t 6:    Run A Simple Docker Container
-                    \t 7:    See All Currently Running Docker Container
-                    \t 8:    See All Container Either Runnig Or Stop
-                    \t 9:    Remove One Docker Container 
-                    \t 10:   Remove All Running Docker Container 
-                    \t 11:   Stop Services Of Docker
-                    \t 12:   exit
+                    \t 4:    See All Docker Images In your System
+                    \t 5:    Launch A Simple Docker Container
+                    \t 6:    See All Currently Running Docker Container
+                    \t 7:    See All Container Either Runnig Or Stop
+                    \t 8:    Remove One Docker Container 
+                    \t 9:    Remove All Running Docker Container 
+                    \t 10:   Stop Services Of Docker
+                    \t 11:   exit
 
         """)
         os.system("tput setaf 7")
@@ -365,16 +365,12 @@ def l_dockerManagement():
         elif ((("status" in ch2) or ("Status" in ch2) or ("STATUS" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             os.system("systemctl status docker")
         
-        elif ((("pull" in ch2) or ("Pull" in ch2) or ("PULL" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
-            image = input("Enter Image Name :-  ")
-            version = input("Enter Version :- ")
-            cmd = "docker pull {}:{}".format(image,version)
-            os.system("cmd")
+        
 
         elif ((("all" in ch2) or ("All" in ch2) or ("ALL" in ch2)) and (("imag" in ch2) or ("Imag" in ch2) or ("IMAG" in ch2))) :
             os.system("docker images")
         
-        elif ((("run" in ch2) or ("Run" in ch2) or ("RUN" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
+        elif ((("launch" in ch2) or ("Launch" in ch2) or ("LAUN" in ch2)) and (("docker" in ch2) or ("Docker" in ch2) or ("DOCKER" in ch2))) :
             name = input("Enter name which you want to give :- ")
             image = input("Enter image name :- ")
             tag = input("Enter Image tag :- ")
@@ -388,7 +384,7 @@ def l_dockerManagement():
         
         elif (((("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) and (("one" in ch2) or ("One" in ch2) or ("ONE" in ch2)) )and (("cont" in ch2) or ("Cont" in ch2) or ("CONT" in ch2))) :
             name = input("Enter Name of Id of container which you want to remove :- ")
-            os.system("docker rm -f {}")
+            os.system("docker rm -f {}".format(name))
 
         elif (((("rem" in ch2) or ("Rem" in ch2) or ("REM" in ch2)) and (("all" in ch2) or ("All" in ch2) or ("ALL" in ch2)) )and (("cont" in ch2) or ("Cont" in ch2) or ("CONT" in ch2))) :
             os.system("docker rm -f $(docker ps -aq)")
@@ -414,11 +410,11 @@ def l_permission() :
 
         os.system("tput setaf 1")
         print("""
-                1. give rwx permission to a file
-                2. revoke rwx permission to a file
-                3. Giev rwx permission to a folder/directory
-                4. revoke rwx permission to a folder/directory
-                5. exit
+                \t 1. give rwx permission to a file
+                \t 2. revoke rwx permission to a file
+                \t 3. Giev rwx permission to a folder/directory
+                \t 4. revoke rwx permission to a folder/directory
+                \t 5. exit
 
             """)
         os.system("tput setaf 7")
@@ -566,18 +562,12 @@ def l_permission() :
                 print(cmd)
                 os.system(cmd)
 
-            elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
-                print("""
-
-                    You exit For Current Menu
-
-                """)
-                break
+            
             
             else :
                 print("No match found please try again")
             
-        elif (("exit" in ch2) or ("quit" in ch2) or ("Exit" in ch2) or ("Quit" in ch2)) :
+        elif (("exit" in opr) or ("quit" in opr) or ("Exit" in opr) or ("Quit" in opr)) :
             print("""
 
                 You exit For Current Menu
