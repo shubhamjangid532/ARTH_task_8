@@ -4,6 +4,7 @@ from com_fun import *
 os.system("clear")
 
                                     # Basic Operation
+
 def r_basicOperation(ip_add):
     i = 1
     while (1) :
