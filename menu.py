@@ -3,6 +3,7 @@ from com_fun import *
 from local import *
 from myinfo import *
 from remote import *
+from ansible_setup import *
 
 
 while (1) :
@@ -31,7 +32,6 @@ while (1) :
                     break
 
                 elif ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
-                    
                     l_basicOperation()
                     os.system("tput setaf 7")
 
@@ -61,9 +61,13 @@ while (1) :
 
 
                 elif ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
-                    
                     l_dockerManagement()
                     os.system("tput setaf 7")
+                
+                elif (("Ansible" in ch1) or ("ansible" in ch1) or ("ANSIBLE" in ch1)) :
+                    l_ansible_setup()
+                    os.system("tput setaf 7")
+                
                 else :
                     print("No Match Found Please Try Again")
 
@@ -110,7 +114,6 @@ while (1) :
                     break
 
                 elif ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
-                    
                     r_basicOperation(ip_add)
                     os.system("tput setaf 7")
 
@@ -124,28 +127,28 @@ while (1) :
                     os.system("tput setaf 7")
 
                 elif ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    
-                    
                     r_userManagement(ip_add)
                     os.system("tput setaf 7")
 
 
                 elif ((("net" in ch1) or ("Net" in ch1))) :
-                
                     r_Networking(ip_add)
                     os.system("tput setaf 7")
 
 
                 elif ((("serv" in ch1) or ("Serv" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    
                     r_serviceManagement(ip_add)
                     os.system("tput setaf 7")
 
 
                 elif ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
-                    
                     r_dockerManagement(ip_add)
                     os.system("tput setaf 7")
+
+                elif (("Ansible" in ch1) or ("ansible" in ch1) or ("ANSIBLE" in ch1)) :
+                    l_ansible_setup(ip_add)
+                    os.system("tput setaf 7")
+                
                 else :
                     print("No Match Found Please Try Again")
 

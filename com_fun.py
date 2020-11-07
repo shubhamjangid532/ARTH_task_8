@@ -10,7 +10,8 @@ def mainMenu():
                 \t 5 : Permissions 
                 \t 6 : Services Management
                 \t 7 : Use Docker Management
-                \t 8 : exit
+                \t 8 : Ansible Management
+                \t 9 : exit
     """)
     os.system("tput setaf 7")
 
@@ -39,3 +40,13 @@ def per_opt() :
                     and so on
 
     """)
+def ansible_menu():
+    print("""
+        
+            1. \t Setup Ansible in You system
+            2. \t Add Target
+            3. \t Show all target nodes
+            4. \t Check Connectivity with target nodes
+            5. \t Exit
+
+    """) 
