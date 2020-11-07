@@ -1,9 +1,9 @@
 import os
+import getpass
 from com_fun import *
 from local import *
 from myinfo import *
 from remote import *
-from ansible_setup import *
 
 
 while (1) :
