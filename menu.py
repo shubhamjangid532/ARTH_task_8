@@ -23,50 +23,55 @@ while (1) :
                 os.system("tput setaf 7")
 
                 ch1 = input("Enter Your Choice : ")
-                if (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
+                
+                if ch1 == "1" or ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
+                    l_basicOperation()
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "2" or ((("pack" in ch1) or ("Pack" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
+                    l_packManagement()
+                    os.system("tput setaf 7")
+
+                elif ch1 == "3" or ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
+                    l_permission()
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "4" or ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
+                    l_userManagement()
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "5" or ((("net" in ch1) or ("Net" in ch1))) :
+                    l_Networking()
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "6" or ((("serv" in ch1) or ("Serv" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
+                    l_serviceManagement()
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "7" or ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
+                    l_dockerManagement()
+                    os.system("tput setaf 7")
+                
+                elif ch1 == "8" or (("Ansible" in ch1) or ("ansible" in ch1) or ("ANSIBLE" in ch1)) :
+                    l_ansible_setup()
+                    os.system("tput setaf 7")
+                
+                elif ch1 == "9" or (("aws" in ch1) or ("AWS" in ch1) or ("Aws" in ch1)) :
+                    l_ansible_setup()
+                    os.system("tput setaf 7")
+                
+                elif ch1 == "10" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
                     print("""
 
                         You exit For Current Menu
 
                     """)
                     break
-
-                elif ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
-                    l_basicOperation()
-                    os.system("tput setaf 7")
-
-
-                elif ((("pack" in ch1) or ("Pack" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    l_packManagement()
-                    os.system("tput setaf 7")
-
-                elif ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
-                    l_permission()
-                    os.system("tput setaf 7")
-
-
-                elif ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    l_userManagement()
-                    os.system("tput setaf 7")
-
-
-                elif ((("net" in ch1) or ("Net" in ch1))) :
-                    l_Networking()
-                    os.system("tput setaf 7")
-
-
-                elif ((("serv" in ch1) or ("Serv" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    l_serviceManagement()
-                    os.system("tput setaf 7")
-
-
-                elif ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
-                    l_dockerManagement()
-                    os.system("tput setaf 7")
-                
-                elif (("Ansible" in ch1) or ("ansible" in ch1) or ("ANSIBLE" in ch1)) :
-                    l_ansible_setup()
-                    os.system("tput setaf 7")
                 
                 else :
                     print("No Match Found Please Try Again")
@@ -105,49 +110,55 @@ while (1) :
                 
 
                 ch1 = input("Enter Your Choice : ")
-                if (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
+                
+
+                if ch1 == "1" or ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
+                    r_basicOperation(ip_add)
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "2" or ((("pack" in ch1) or ("Pack" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
+                    r_packManagement(ip_add)
+                    os.system("tput setaf 7")
+
+                elif ch1 == "3" or ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
+                    r_permission(ip_add)
+                    os.system("tput setaf 7")
+
+                elif ch1 == "4" or ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
+                    r_userManagement(ip_add)
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "5" or ((("net" in ch1) or ("Net" in ch1))) :
+                    r_Networking(ip_add)
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "6" or ((("serv" in ch1) or ("Serv" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
+                    r_serviceManagement(ip_add)
+                    os.system("tput setaf 7")
+
+
+                elif ch1 == "7" or ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
+                    r_dockerManagement(ip_add)
+                    os.system("tput setaf 7")
+
+                elif ch1 == "8" or (("Ansible" in ch1) or ("ansible" in ch1) or ("ANSIBLE" in ch1)) :
+                    r_ansible_setup(ip_add)
+                    os.system("tput setaf 7")
+                
+                elif ch1 == "9" or (("aws" in ch1) or ("AWS" in ch1) or ("Aws" in ch1)) :
+                    r_ansible_setup()
+                    os.system("tput setaf 7")
+
+                if ch1 == "10" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
                     print("""
 
                         You exit For Current Menu
 
                     """)
                     break
-
-                elif ((("bas" in ch1) or ("Bas" in ch1)) and (("oper" in ch1) or ("Oper" in ch1) or ("OPER" in ch1))) :
-                    r_basicOperation(ip_add)
-                    os.system("tput setaf 7")
-
-
-                elif ((("pack" in ch1) or ("Pack" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    r_packManagement(ip_add)
-                    os.system("tput setaf 7")
-
-                elif ((("per" in ch1) or ("Per" in ch1) or ("PER" in ch1))) :
-                    r_permission(ip_add)
-                    os.system("tput setaf 7")
-
-                elif ((("user" in ch1) or ("User" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    r_userManagement(ip_add)
-                    os.system("tput setaf 7")
-
-
-                elif ((("net" in ch1) or ("Net" in ch1))) :
-                    r_Networking(ip_add)
-                    os.system("tput setaf 7")
-
-
-                elif ((("serv" in ch1) or ("Serv" in ch1) and (("mana" in ch1) or ("Mana" in ch1)))) :
-                    r_serviceManagement(ip_add)
-                    os.system("tput setaf 7")
-
-
-                elif ((("Docker" in ch1) or ("docker" in ch1) or ("DOCKER" in ch1)) and (("mana" in ch1) or ("Mana" in ch1)  or ("MANA" in ch1))) :
-                    r_dockerManagement(ip_add)
-                    os.system("tput setaf 7")
-
-                elif (("Ansible" in ch1) or ("ansible" in ch1) or ("ANSIBLE" in ch1)) :
-                    l_ansible_setup(ip_add)
-                    os.system("tput setaf 7")
                 
                 else :
                     print("No Match Found Please Try Again")
