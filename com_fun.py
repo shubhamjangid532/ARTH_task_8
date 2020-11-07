@@ -170,4 +170,4 @@ def aws_menu():
                     \t 17:   Create a CloudFront Distribution
                     \t 18:   exit
 
-""")
+    """)
