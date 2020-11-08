@@ -831,7 +831,7 @@ def r_hadoop(ip_add):
             os.system("ssh {} hadoop-daemon.sh start namenode".format(ip_add))
         elif choice == "7" or ((("STOP" in choice) or ("stop" in choice) or ("Stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
             os.system("ssh {} hadoop-daemon.sh start datanode".format(ip_add))
-        elif choice == "8" or ((("START" in choice) or ("start" in choice) or ("Start" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))) "8":
+        elif choice == "8" or ((("START" in choice) or ("start" in choice) or ("Start" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))) :
             os.system("ssh {} hadoop-daemon.sh stop namenode".format(ip_add))
         elif choice == "9" or ((("STOP" in choice) or ("stop" in choice) or ("stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
             os.system("ssh {} hadoop-daemon.sh stop datanode".format(ip_add))

@@ -2,6 +2,7 @@
 
 import os
 from com_fun import *
+from com_fun import *
 import getpass
 os.system("clear")
 
@@ -838,25 +839,25 @@ def l_hadoop():
             os.system("hadoop-daemon.sh start namenode")
         elif choice == "7" or ((("STOP" in choice) or ("stop" in choice) or ("Stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
             os.system("hadoop-daemon.sh start datanode")
-        elif choice == "8" or ((("START" in choice) or ("start" in choice) or ("Start" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))) "8":
+        elif choice == "8" or ((("START" in choice) or ("start" in choice) or ("Start" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
             os.system("hadoop-daemon.sh stop namenode")
         elif choice == "9" or ((("STOP" in choice) or ("stop" in choice) or ("stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
             os.system("hadoop-daemon.sh stop datanode")
         elif choice == "10" or ((("per" in choice) or ("Per" in choice) or ("PER" in choice)) and (("opr" in choice) or ("Opr" in choice) or ("OPR" in choice))):
             ch1 = input("""Who Are You? : 
-            1. NamedNode
-            2. DataNode
-            3. Client
+                    1. NamedNode
+                    2. DataNode
+                    3. Client
         
             Choice: """)
             if ch1 == "1" or ((("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
                 print("""What Operation you want to perform?:
-                1. Get Report
-                2. Upload files
-                3. Upload files with custom block size
-                4. Read files
-                5. Remove files
-                6. List all files of a particular directory
+                    1. Get Report
+                    2. Upload files
+                    3. Upload files with custom block size
+                    4. Read files
+                    5. Remove files
+                    6. List all files of a particular directory
             
                 """)
                 ch2 = input("please enter only numbers ")
