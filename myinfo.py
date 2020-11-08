@@ -4,10 +4,10 @@ def MyDetails():
         print("""
 
                         \t Name : Shubham Jangid
-                                : Kumar Rahul
-                                : Akhil Maharana
-                                : Kanika Sharma
-                                : Neeraj Pandey
+                        \t      : Kumar Rahul
+                        \t      : Akhil Maharana
+                        \t      : Kanika Sharma
+                        \t      : Neeraj Pandey
                         \t ARTH GROUP : ARTH2020_16_19
                         \t GitHub Repo : https://github.com/shubhamjangid532/ARTH_task_8
                         \t Post URL : https://www.linkedin.com/in/shubham-jangid-0959931a3/
