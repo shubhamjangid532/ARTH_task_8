@@ -62,7 +62,7 @@ while (1) :
                     os.system("tput setaf 7")
                 
                 elif ch1 == "9" or (("aws" in ch1) or ("AWS" in ch1) or ("Aws" in ch1)) :
-                    l_ansible_setup()
+                    l_aws()
                     os.system("tput setaf 7")
                 
                 elif ch1 == "10" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
@@ -149,7 +149,7 @@ while (1) :
                     os.system("tput setaf 7")
                 
                 elif ch1 == "9" or (("aws" in ch1) or ("AWS" in ch1) or ("Aws" in ch1)) :
-                    r_ansible_setup()
+                    r_aws()
                     os.system("tput setaf 7")
 
                 if ch1 == "10" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
