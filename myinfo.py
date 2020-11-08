@@ -4,9 +4,13 @@ def MyDetails():
         print("""
 
                         \t Name : Shubham Jangid
+                                : Kumar Rahul
+                                : Akhil Maharana
+                                : Kanika Sharma
+                                : Neeraj Pandey
                         \t ARTH GROUP : TEAM(Group 19)
-                        \t Mobile Number : 9649543318
-                        \t linkedin ID : https://www.linkedin.com/in/shubham-jangid-0959931a3/
-                        \t Email ID : shubhamjangid532@gmail.com
+                        \t GitHub Repo : https://github.com/shubhamjangid532/ARTH_task_8
+                        \t Post URL : https://www.linkedin.com/in/shubham-jangid-0959931a3/
+                        \t Blog URL : https://shubhamjangid532.medium.com/
         """)
         os.system("tput setaf 7")
