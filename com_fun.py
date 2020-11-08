@@ -188,3 +188,47 @@ def hadoop_menu():
                     \t 11:   Exit
 
     """)
+
+def l_core_site(name,ip):
+    os.system('echo "<?xml version="1.0"?>" > /etc/hadoop/core-site.xml')
+    os.system('echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> /etc/hadoop/core-site.xml')
+    os.system('echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> /etc/hadoop/core-site.xml')
+    os.system('echo "<configuration>" >> /etc/hadoop/core-site.xml')
+    os.system('echo "<property>" >> /etc/hadoop/core-site.xml')
+    os.system('echo "<name>{}</name>" >> /etc/hadoop/core-site.xml'.format(name))
+    os.system('echo "<value>hdfs://{}:9001</value>" >> /etc/hadoop/core-site.xml'.format(ip))
+    os.system('echo "</property>" >> /etc/hadoop/core-site.xml')
+    os.system('echo "</configuration>" >> /etc/hadoop/core-site.xml')
+
+def l_hdfs_site(hdfs_type,dir):
+    os.system('echo "<?xml version="1.0"?>" > hdfs-site.xml')
+    os.system('echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> hdfd-site.xml')
+    os.system('echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> hdfs-site.xml')
+    os.system('echo "<configuration>" >> hdfs-site.xml')
+    os.system('echo "<property>" >> hdfs-site.xml')
+    os.system('echo "<name>{}</name>" >> hdfs-site.xml'.format(hdfs_type))
+    os.system('echo "<value>/{}</value>" >> hdfs-site.xml'.format(dir))
+    os.system('echo "</property>" >> hdfs-site.xml')
+    os.system('echo "</configuration>" >> hdfs-site.xml')
+
+def r_core_site(ip_add,name,ip):
+    os.system('ssh {} echo "<?xml version="1.0"?>" > /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<configuration>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<property>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<name>{}</name>" >> /etc/hadoop/core-site.xml'.format(ip_add,name))
+    os.system('ssh {} echo "<value>hdfs://{}:9001</value>" >> /etc/hadoop/core-site.xml'.format(ip_add,ip))
+    os.system('ssh {} echo "</property>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "</configuration>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+
+def r_hdfs_site(ip_add,hdfs_type,dir):
+    os.system('ssh {} echo "<?xml version="1.0"?>" > hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> hdfd-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<configuration>" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<property>" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<name>{}</name>" >> hdfs-site.xml'.format(ip_add,hdfs_type))
+    os.system('ssh {} echo "<value>/{}</value>" >> hdfs-site.xml'.format(ip_add,dir))
+    os.system('ssh {} echo "</property>" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "</configuration>" >> hdfs-site.xml'.format(ip_add))

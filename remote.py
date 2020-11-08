@@ -752,81 +752,41 @@ def r_hadoop(ip_add):
             if x != 0 :
                 os.system("ssh {} rpm -i hadoop-1.2.1-1.x86_64.rpm  --force".format(ip_add))
             print("Installed")
+        
         elif choice == "3" or ((("conf" in choice) or ("Conf" in choice) or ("CONF" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
-            ip = input("Enter Your IP : ")
-            nn = input("Enter the name for NameNode Directory : ")
+            ip = "0.0.0.0"
+            name = "fs.default.name"
+            hdfs_type = "dfs.name.dir"
+            nn = input("Enter the name for Name Node Directory : ")
             os.system("ssh {} mkdir /{}".format(ip_add,nn))
-            new_file = open("/etc/hadoop/core-site.xml","r")
-            lines = new_file.readlines()
-            lines[7] = "<property>\n"
-            new_file = open("/etc/hadoop/core-site.xml", "w")
-            new_file.writelines(lines)
-            new_file.close()
-            new_file = open("/etc/hadoop/core-site.xml","a")
-            new_file.write("<name>fs.default.name</name>\n") 
-            new_file.write("<value>hdfs://{}:9001</value>\n".format(ip))
-            new_file.write("</property>\n")
-            new_file.write("</configuration>\n")
+            r_core_site(ip_addname,ip)
 
-            n_file = open("/etc/hadoop/hdfs-site.xml","r")
-            line = n_file.readlines()
-            line[7] = "<property>\n"
-            n_file = open("/etc/hadoop/hdfs-site.xml", "w")
-            n_file.writelines(line)
-            n_file.close()
-            n_file = open("/etc/hadoop/hdfs-site.xml","a")
-            n_file.write("<name>dfs.name.dir</name>\n") 
-            n_file.write("<value>/{}</value>\n".format(nn))
-            n_file.write("</property>\n")
-            n_file.write("</configuration>\n")
+            r_hdfs_site(ip_add,hdfs_type,nn)
             print("NameNode setup Successfully")
-            os.system("hadoop namenode -format")
-            os.system("hadoop-daemon.sh start namenode")
-            os.system("jps")
+            os.system("ssh {} hadoop namenode -format".format(ip_add))
+            os.system("ssh {} hadoop-daemon.sh start namenode".format(ip_add))
+            os.system("ssh {} jps".format(ip_add))
+        
         elif choice == "4" or ((("conf" in choice) or ("Conf" in choice) or ("CONF" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
-            ip = input("Enter the NameNode's IP : ")
-            dn = input("Enter the name for DataNode Directory : ")
-            os.system("mkdir /{}".format(dn))
-            new_file = open("/etc/hadoop/core-site.xml","r")
-            lines = new_file.readlines()
-            lines[7] = "<property>\n"
-            new_file = open("/etc/hadoop/core-site.xml", "w")
-            new_file.writelines(lines)
-            new_file.close()
-            new_file = open("/etc/hadoop/core-site.xml","a")
-            new_file.write("<name>fs.default.name</name>\n") 
-            new_file.write("<value>hdfs://{}:9001</value>\n".format(ip))
-            new_file.write("</property>\n")
-            new_file.write("</configuration>\n")
-
-            n_file = open("/etc/hadoop/hdfs-site.xml","r")
-            line = n_file.readlines()
-            line[7] = "<property>\n"
-            n_file = open("/etc/hadoop/hdfs-site.xml", "w")
-            n_file.writelines(line)
-            n_file.close()
-            n_file = open("/etc/hadoop/hdfs-site.xml","a")
-            n_file.write("<name>dfs.data.dir</name>\n") 
-            n_file.write("<value>/{}</value>\n".format(dn))
-            n_file.write("</property>\n")
-            n_file.write("</configuration>\n")
+            ip = input("Enter Master node IP where you want to connect :- ")
+            name = "fs.default.name"
+            hdfs_type = "dfs.data.dir"
+            dn = input("Enter the name for Data Node Directory : ")
+            os.system("ssh {} mkdir /{}".format(ip_add,nn))
+            r_core_site(ip_add,name,ip)
+            
+            r_hdfs_site(ip_add,hdfs_type,nn)
             print("DataNode setup Successfully")
-            os.system("hadoop-daemon.sh start datanode")
-            os.system("jps")
+            os.system("ssh {} hadoop-daemon.sh start datanode".format(ip_add))
+            os.system("ssh {} jps".format(ip_add))
+            
+        
         elif choice == "5" or ((("conf" in choice) or ("Conf" in choice) or ("CONF" in choice)) and (("client" in choice) or ("Client" in choice) or ("CLIENT" in choice))):
-            ip = input("Enter the DataNode's IP : ")
-            new_file = open("/etc/hadoop/core-site.xml","r")
-            lines = new_file.readlines()
-            lines[7] = "<property>\n"
-            new_file = open("/etc/hadoop/core-site.xml", "w")
-            new_file.writelines(lines)
-            new_file.close()
-            new_file = open("/etc/hadoop/core-site.xml","a")
-            new_file.write("<name>fs.default.name</name>\n") 
-            new_file.write("<value>hdfs://{}:9001</value>\n".format(ip))
-            new_file.write("</property>\n")
-            new_file.write("</configuration>\n")
+            ip = input("Enter Master node IP where you want to connect :- ")
+            name = "fs.default.name"
+            r_core_site(ip_add,name,ip)
             print("Client setup Successfully")
+
         elif choice == "6" or ((("START" in choice) or ("start" in choice) or ("Start" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
             os.system("ssh {} hadoop-daemon.sh start namenode".format(ip_add))
         elif choice == "7" or ((("STOP" in choice) or ("stop" in choice) or ("Stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):

@@ -1,0 +1,112 @@
+                #core-site.xml master
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://0.0.0.0:9001</value>
+</property>
+</configuration>
+
+                #hdfs-core.xml master
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>dfs.name.dir</name>
+<value>/name_node</value>
+</property>
+</configuration>
+
+                #core-site.xml slave
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>fs.default.name</name>
+<value>hdfs://192.168.157.129:9001</value>
+</property>
+</configuration>
+
+            #hdfs-site.xml slave
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>dfs.data.dir</name>
+<value>/data_node</value>
+</property>
+</configuration>
+
+
+master = "fs.default.name"
+
+    
+
+
+import os
+def core_site(name,ip):
+    os.system('echo "<?xml version="1.0"?>" > core-site.xml')
+    os.system('echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> core-site.xml')
+
+    os.system('echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> core-site.xml')
+    ip = input("Enter IP :- ")
+    os.system('echo "<configuration>" >> core-site.xml')
+    os.system('echo "<property>" >> core-site.xml')
+    os.system('echo "<name>{}</name>" >> core-site.xml'.format(name))
+    os.system('echo "<value>hdfs://{}:9001</value>" >> core-site.xml'.format(ip))
+    os.system('echo "</property>" >> core-site.xml')
+    os.system('echo "</configuration>" >> core-site.xml')
+
+
+core_site(name,ip)
+
+def hdfs_site(hdfs_type,dir):
+    os.system('echo "<?xml version="1.0"?>" > hdfs-site.xml')
+    os.system('echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> hdfd-site.xml')
+
+    os.system('echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> hdfs-site.xml')
+    name = input("Ente name_node  :- ")
+    os.system('echo "<configuration>" >> hdfs-site.xml')
+    os.system('echo "<property>" >> hdfs-site.xml')
+    os.system('echo "<name>{}</name>" >> hdfs-site.xml'.format(hdfs_type))
+    os.system('echo "<value>/{}</value>" >> hdfs-site.xml'.format(dir))
+    os.system('echo "</property>" >> hdfs-site.xml')
+    os.system('echo "</configuration>" >> hdfs-site.xml')
+
+hdfs_site(hdfs_type,dir)      
+
+def r_core_site(ip_add,name,ip):
+    os.system('ssh {} echo "<?xml version="1.0"?>" > /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<configuration>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<property>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<name>{}</name>" >> /etc/hadoop/core-site.xml'.format(ip_add,name))
+    os.system('ssh {} echo "<value>hdfs://{}:9001</value>" >> /etc/hadoop/core-site.xml'.format(ip_add,ip))
+    os.system('ssh {} echo "</property>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+    os.system('ssh {} echo "</configuration>" >> /etc/hadoop/core-site.xml'.format(ip_add))
+
+def r_hdfs_site(ip_add,hdfs_type,dir):
+    os.system('ssh {} echo "<?xml version="1.0"?>" > hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>\n" >> hdfd-site.xml'.format(ip_add))
+    os.system('ssh {} echo -e "<!-- Put site-specific property overrides in this file. -->\n" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<configuration>" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<property>" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "<name>{}</name>" >> hdfs-site.xml'.format(ip_add,hdfs_type))
+    os.system('ssh {} echo "<value>/{}</value>" >> hdfs-site.xml'.format(ip_add,dir))
+    os.system('ssh {} echo "</property>" >> hdfs-site.xml'.format(ip_add))
+    os.system('ssh {} echo "</configuration>" >> hdfs-site.xml'.format(ip_add))      
+
