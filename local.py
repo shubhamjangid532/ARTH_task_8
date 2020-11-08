@@ -729,3 +729,226 @@ def l_aws():
         
         else :
             print("No Match Found Please Try Again")    
+
+                            # Hadoop Management
+def l_hadoop():
+    while (1) :
+        print("You Selected Hadoop " , end = "\n\n")
+        os.system("tput setaf 1")
+        hadoop_menu()
+        os.system("tput setaf 7")
+
+        choice = input("Enter Your Choice : ")
+
+        if choice == "1" or (("Download" in choice) or ("download" in choice) or ("DOWNLOAD" in choice)):
+            print("It Will Take Time According To Your Internet Speed" , end = "\n\n")
+            net = os.system("wget https://github.com/shubhamjangid532/ARTH_task_8/raw/master/hadoop-1.2.1-1.x86_64.rpm")
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
+            net = os.system("wget https://github.com/shubhamjangid532/ARTH_task_8/raw/master/jdk-8u171-linux-x64.rpm")
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+            print("Downloaded")
+
+        elif choice == "2" or ((("install" in choice) or ("Install" in choice) or ("INSTALL" in choice)) and (("hadoop" in choice) or ("Hadoop" in choice) or ("HADOOP" in choice))):
+            x = os.system("rpm -q jdk-8u171-linux-x86.rpm")
+            if x != 0 :
+                os.system("yum install jdk-8u171-linux-x86.rpm -y")
+            x = os.system("rpm -q hadoop-1.2.1-1.x86_64.rpm")
+            if x != 0 :
+                os.system("rpm -i hadoop-1.2.1-1.x86_64.rpm  --force")
+            print("Installed")
+        elif choice == "3" or ((("conf" in choice) or ("Conf" in choice) or ("CONF" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
+            ip = input("Enter Your IP : ")
+            nn = input("Enter the name for NameNode Directory : ")
+            os.system("mkdir /{}".format(nn))
+            new_file = open("/etc/hadoop/core-site.xml","r")
+            lines = new_file.readlines()
+            lines[7] = "<property>\n"
+            new_file = open("/etc/hadoop/core-site.xml", "w")
+            new_file.writelines(lines)
+            new_file.close()
+            new_file = open("/etc/hadoop/core-site.xml","a")
+            new_file.write("<name>fs.default.name</name>\n") 
+            new_file.write("<value>hdfs://{}:9001</value>\n".format(ip))
+            new_file.write("</property>\n")
+            new_file.write("</configuration>\n")
+
+            n_file = open("/etc/hadoop/hdfs-site.xml","r")
+            line = n_file.readlines()
+            line[7] = "<property>\n"
+            n_file = open("/etc/hadoop/hdfs-site.xml", "w")
+            n_file.writelines(line)
+            n_file.close()
+            n_file = open("/etc/hadoop/hdfs-site.xml","a")
+            n_file.write("<name>dfs.name.dir</name>\n") 
+            n_file.write("<value>/{}</value>\n".format(nn))
+            n_file.write("</property>\n")
+            n_file.write("</configuration>\n")
+            print("NameNode setup Successfully")
+            os.system("hadoop namenode -format")
+            os.system("hadoop-daemon.sh start namenode")
+            os.system("jps")
+        elif choice == "4" or ((("conf" in choice) or ("Conf" in choice) or ("CONF" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
+            ip = input("Enter the NameNode's IP : ")
+            dn = input("Enter the name for DataNode Directory : ")
+            os.system("mkdir /{}".format(dn))
+            new_file = open("/etc/hadoop/core-site.xml","r")
+            lines = new_file.readlines()
+            lines[7] = "<property>\n"
+            new_file = open("/etc/hadoop/core-site.xml", "w")
+            new_file.writelines(lines)
+            new_file.close()
+            new_file = open("/etc/hadoop/core-site.xml","a")
+            new_file.write("<name>fs.default.name</name>\n") 
+            new_file.write("<value>hdfs://{}:9001</value>\n".format(ip))
+            new_file.write("</property>\n")
+            new_file.write("</configuration>\n")
+
+            n_file = open("/etc/hadoop/hdfs-site.xml","r")
+            line = n_file.readlines()
+            line[7] = "<property>\n"
+            n_file = open("/etc/hadoop/hdfs-site.xml", "w")
+            n_file.writelines(line)
+            n_file.close()
+            n_file = open("/etc/hadoop/hdfs-site.xml","a")
+            n_file.write("<name>dfs.data.dir</name>\n") 
+            n_file.write("<value>/{}</value>\n".format(dn))
+            n_file.write("</property>\n")
+            n_file.write("</configuration>\n")
+            print("DataNode setup Successfully")
+            os.system("hadoop-daemon.sh start datanode")
+            os.system("jps")
+        elif choice == "5" or ((("conf" in choice) or ("Conf" in choice) or ("CONF" in choice)) and (("client" in choice) or ("Client" in choice) or ("CLIENT" in choice))):
+            ip = input("Enter the DataNode's IP : ")
+            new_file = open("/etc/hadoop/core-site.xml","r")
+            lines = new_file.readlines()
+            lines[7] = "<property>\n"
+            new_file = open("/etc/hadoop/core-site.xml", "w")
+            new_file.writelines(lines)
+            new_file.close()
+            new_file = open("/etc/hadoop/core-site.xml","a")
+            new_file.write("<name>fs.default.name</name>\n") 
+            new_file.write("<value>hdfs://{}:9001</value>\n".format(ip))
+            new_file.write("</property>\n")
+            new_file.write("</configuration>\n")
+            print("Client setup Successfully")
+        elif choice == "6" or ((("START" in choice) or ("start" in choice) or ("Start" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
+            os.system("hadoop-daemon.sh start namenode")
+        elif choice == "7" or ((("STOP" in choice) or ("stop" in choice) or ("Stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
+            os.system("hadoop-daemon.sh start datanode")
+        elif choice == "8" or ((("START" in choice) or ("start" in choice) or ("Start" in choice)) and (("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))) "8":
+            os.system("hadoop-daemon.sh stop namenode")
+        elif choice == "9" or ((("STOP" in choice) or ("stop" in choice) or ("stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
+            os.system("hadoop-daemon.sh stop datanode")
+        elif choice == "10" or ((("per" in choice) or ("Per" in choice) or ("PER" in choice)) and (("opr" in choice) or ("Opr" in choice) or ("OPR" in choice))):
+            ch1 = input("""Who Are You? : 
+            1. NamedNode
+            2. DataNode
+            3. Client
+        
+            Choice: """)
+            if ch1 == "1" or ((("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
+                print("""What Operation you want to perform?:
+                1. Get Report
+                2. Upload files
+                3. Upload files with custom block size
+                4. Read files
+                5. Remove files
+                6. List all files of a particular directory
+            
+                """)
+                ch2 = input("please enter only numbers ")
+                if ch2 == "1":
+                    os.system("hadoop dfsadmin -report")
+                elif ch2 == "2":
+                    fileName = input("Enter the File Name to upload : ")
+                    os.system("hadoop fs -put {} /".format(fileName))
+                elif ch2 == "3":
+                    fileName = input("Enter the File Name to upload : ")
+                    blockSize = input("Enter the block size in bytes : ")
+                    os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
+                elif ch2 == "4":
+                    fileName = input("Enter the File Name to read : ")
+                    os.system("hadoop fs -cat /{}".format(fileName))
+                elif ch2 == "5":
+                    fileName = input("Enter the File Name to remove : ")
+                    os.system("hadoop fs -rm {} /".format(fileName))
+                elif ch2 == "6":
+                    os.system("hadoop fs  -ls /")
+            
+                else:
+                    print("No Match Found Please Try Again")
+
+            elif ch1 == "2"  or ((("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
+                print("""What Operation you want to perform?:
+                1. Upload files
+                2. Upload files with custom block size
+                3. Read files
+                4. Remove files
+                5. List all files of a particular directory
+            
+                """)
+                ch2 = input("please enter only numbers ")
+                if ch2 == "1":
+                    fileName = input("Enter the File Name to upload : ")
+                    os.system("hadoop fs -put {} /".format(fileName))
+                elif ch2 == "2":
+                    fileName = input("Enter the File Name to upload : ")
+                    blockSize = input("Enter the block size in bytes : ")
+                    os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
+                elif ch2 == "3":
+                    fileName = input("Enter the File Name to read : ")
+                    os.system("hadoop fs -cat /{}".format(fileName))
+                elif ch2 == "4":
+                    fileName = input("Enter the File Name to remove : ")
+                    os.system("hadoop fs -rm {} /".format(fileName))
+                elif ch2 == "5":
+                    os.system("hadoop fs  -ls /")
+                
+                else:
+                    print("No Match Found Please Try Again")
+            elif ch1 == "3" or (("client" in choice) or ("Client" in choice) or ("CLIENT" in choice)):
+                print("""What Operation you want to perform?:
+                1. Upload files
+                2. Upload files with custom block size
+                3. Read files
+                4. Remove files
+                5. List all files of a particular directory
+    
+                """)
+                ch2 = input("please enter only numbers ")
+                if ch2 == "1":
+                    fileName = input("Enter the File Name to upload : ")
+                    os.system("hadoop fs -put {} /".format(fileName))
+                elif ch2 == "2":
+                    fileName = input("Enter the File Name to upload : ")
+                    blockSize = input("Enter the block size in bytes : ")
+                    os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
+                elif ch2 == "3":
+                    fileName = input("Enter the File Name to read : ")
+                    os.system("hadoop fs -cat /{}".format(fileName))
+                elif ch2 == "4":
+                    fileName = input("Enter the File Name to remove : ")
+                    os.system("hadoop fs -rm {} /".format(fileName))
+                elif ch2 == "5":
+                    os.system("hadoop fs  -ls /")
+            
+                else:
+                    print("No Match Found Please Try Again")
+    
+            else:
+                print("No Match Found Please Try Again")
+            
+
+        elif choice == "11" or (("exit" in choice) or ("quit" in choice) or ("Exit" in choice) or ("Quit" in choice) or ("QUIT" in choice) or ("EXIT" in choice)) :
+            print("""
+
+                You exit For Current Menu
+
+            """)
+            break
+        
+        else :
+            print("No Match Found Please Try Again")

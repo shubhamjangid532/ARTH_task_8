@@ -13,7 +13,8 @@ def mainMenu():
                 \t 7 : Use Docker Management
                 \t 8 : Ansible Management
                 \t 9 : AWS Management
-                \t 10 : exit
+                \t 10 : Hadoop Management
+                \t 11 : exit
     """)
     os.system("tput setaf 7")
 
@@ -169,5 +170,21 @@ def aws_menu():
                     \t 16.   Copy Data to Any s3 Bucket
                     \t 17.   Create a CloudFront Distribution
                     \t 18.   exit
+
+    """)
+
+def hadoop_menu():
+    print("""
+                    \t 1:    Download Softwares reqiured for installing hadoop
+                    \t 2:    Installation of Hadoop Cluster
+                    \t 3:    Configure system as Name Node (Master)
+                    \t 4:    Configure system as Data Node (Slave)
+                    \t 5:    Configure system as Client
+                    \t 6:    Start Name Node Service
+                    \t 7:    Start Data Node Service
+                    \t 8:    Stop Name Node Service
+                    \t 9:    Stop Data Node Service
+                    \t 10:   Perform Operations (report,list,upload,change block size and upload,remove,read)  
+                    \t 11:   Exit
 
     """)
