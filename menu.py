@@ -64,8 +64,12 @@ while (1) :
                 elif ch1 == "9" or (("aws" in ch1) or ("AWS" in ch1) or ("Aws" in ch1)) :
                     l_aws()
                     os.system("tput setaf 7")
+
+                elif ch1 == "10" or (("hadoop" in ch1) or ("Hadoop" in ch1) or ("HADOOP" in ch1)) :
+                    l_hadoop()
+                    os.system("tput setaf 7")
                 
-                elif ch1 == "10" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
+                elif ch1 == "11" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
                     print("""
 
                         You exit For Current Menu
@@ -152,7 +156,12 @@ while (1) :
                     r_aws()
                     os.system("tput setaf 7")
 
-                if ch1 == "10" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
+                elif ch1 == "10" or (("hadoop" in ch1) or ("Hadoop" in ch1) or ("HADOOP" in ch1)) :
+                    r_hadoop(ip_add)
+                    os.system("tput setaf 7")
+                
+
+                if ch1 == "11" or (("exit" in ch1) or ("quit" in ch1) or ("Exit" in ch1) or ("Quit" in ch1)) :
                     print("""
 
                         You exit For Current Menu
