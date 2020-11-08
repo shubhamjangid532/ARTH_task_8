@@ -105,11 +105,11 @@ def docker_menu():
 
 def permission_menu():
     print("""
-                \t 1. give rwx permission to a file
-                \t 2. revoke rwx permission to a file
-                \t 3. Giev rwx permission to a folder/directory
-                \t 4. revoke rwx permission to a folder/directory
-                \t 5. exit
+                    \t 1. give rwx permission to a file
+                    \t 2. revoke rwx permission to a file
+                    \t 3. Giev rwx permission to a folder/directory
+                    \t 4. revoke rwx permission to a folder/directory
+                    \t 5. exit
 
     """)
 
@@ -141,33 +141,33 @@ def per_opt() :
 def ansible_menu():
     print("""
         
-            1. \t Setup Ansible in You system
-            2. \t Add Target
-            3. \t Show all target nodes
-            4. \t Check Connectivity with target nodes
-            5. \t Exit
+                    \t 1.  Setup Ansible in You system
+                    \t 2.  Add Target
+                    \t 3.  Show all target nodes
+                    \t 4.  Check Connectivity with target nodes
+                    \t 5.  Exit
 
     """) 
 
 def aws_menu():
     print("""
-                    \t 1:    Login Your Account
-                    \t 2:    Create a key Pair
-                    \t 3:    List key Pairs
-                    \t 4:    Create a Security group
-                    \t 5:    Add InBound Rules To existing security group
-                    \t 6:    Describe all the Instances
-                    \t 7:    Start a Stopped instances
-                    \t 8:    Stop an Instance
-                    \t 9:    Terminate an Instance
-                    \t 10:   Launch an Instance 
-                    \t 11:   Create a Volume(EBS)
-                    \t 12:   Delete a volume(EBS)
-                    \t 13:   Deattach a volume(EBS)
-                    \t 14:   Attach volume(EBS) to any Instance
-                    \t 15:   Create a S3 Bucket
-                    \t 16:   Copy Data to Any s3 Bucket
-                    \t 17:   Create a CloudFront Distribution
-                    \t 18:   exit
+                    \t 1.    Login Your Account
+                    \t 2.    Create a key Pair
+                    \t 3.    List key Pairs
+                    \t 4.    Create a Security group
+                    \t 5.    Add InBound Rules To existing security group
+                    \t 6.    Describe all the Instances
+                    \t 7.    Start a Stopped instances
+                    \t 8.    Stop an Instance
+                    \t 9.    Terminate an Instance
+                    \t 10.   Launch an Instance 
+                    \t 11.   Create a Volume(EBS)
+                    \t 12.   Delete a volume(EBS)
+                    \t 13.   Deattach a volume(EBS)
+                    \t 14.   Attach volume(EBS) to any Instance
+                    \t 15.   Create a S3 Bucket
+                    \t 16.   Copy Data to Any s3 Bucket
+                    \t 17.   Create a CloudFront Distribution
+                    \t 18.   exit
 
     """)
