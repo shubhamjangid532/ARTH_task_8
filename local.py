@@ -821,7 +821,7 @@ def l_hadoop():
                     6. List all files of a particular directory
             
                 """)
-                ch2 = input("please enter only numbers ")
+                ch2 = input("please enter only numbers :-  ")
                 if ch2 == "1":
                     os.system("hadoop dfsadmin -report")
                 elif ch2 == "2":
