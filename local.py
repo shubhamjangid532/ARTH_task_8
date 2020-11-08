@@ -514,7 +514,10 @@ def l_ansible_setup():
 
         if ch2 == "1" or ((("setup" in ch2) or ("Setup" in ch2) or ("SETUP" in ch2)) and (("ansible" in ch2) or ("ANSIBLE" in ch2) or ("Ansible" in ch2))) :
             print("Installation may take 10 to 15 minutes and also depends upon your internet connection ")
-            os.system("pip3 install ansible")
+            net = os.system("pip3 install ansible")
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+                
             a = os.system("ls /etc/ | grep ip.txt > garbage")
             if a != 0:
                 os.system("touch /root/ip.txt")
@@ -581,45 +584,64 @@ def l_aws():
         choice = input("Enter Your Choice : ")
 
         if choice == "1" or ((("login" in choice) or ("Login" in choice) or ("LOGIN" in choice)) and (("acc" in choice) or ("Acc" in choice) or ("ACC" in choice))) :
-            os.system("aws configure")
+            net = os.system("aws configure")
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
             print("logined")
 
-        elif choice == "2" or ((("Create" in choice) or ("create" in choice)) and (("CREATE" in choice) or ("key" in choice) or ("Key" in choice) or ("KEY" in choice))):
+        elif choice == "2" or ((("Create" in choice) or ("create" in choice) or ("CREATE" in choice)) and (("key" in choice) or ("Key" in choice) or ("KEY" in choice))):
             keyname = input("Enter the new key name : ")
-            os.system("aws ec2 create-key-pair --key-name {}".format(keyname))
+            net = os.system("aws ec2 create-key-pair --key-name {}".format(keyname))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
             print("Key pair created")
         
         elif choice == "3" or ((("list" in choice) or ("List" in choice)) and (("LIST" in choice)) and (("key" in choice) or ("Key" in choice) or ("KEY" in choice))):
-            os.system("aws ec2 describe-key-pairs")
+            net = os.system("aws ec2 describe-key-pairs")
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
         
         elif choice == "4" or ((("Create" in choice) or ("create" in choice) or ("CREATE" in choice)) and (("sec" in choice) or ("Sec" in choice) or ("SEC" in choice))):
             sgname = input("Enter the sg name : ")
             description = input("Give the Description : ")
             vpc = input("Enter the vpc ID : ")
-            os.system("aws ec2 create-security-group --group-name {0} --description {1} --vpc-id {2}".format(sgname,description,vpc))
-        
+            net = os.system("aws ec2 create-security-group --group-name {0} --description {1} --vpc-id {2}".format(sgname,description,vpc))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "5" or ((("add" in choice) or ("Add" in choice) or ("ADD" in choice)) and (("Inbound" in choice) or ("inbound" in choice) or ("INBOUND" in choice))):
             sgname = input("Enter the sg name : ")
             protocol = input("Enter the protocol : ")
             port = input("Enter the port number : ")
             cidr = input("Enter the cidr block : ")
-            os.system("aws ec2 authorize-security-group-ingress --group-name {0} --protocol {1} --port {2} --cidr {3} ".format(sgname,protocol,port,cidr))
-        
+            net = os.system("aws ec2 authorize-security-group-ingress --group-name {0} --protocol {1} --port {2} --cidr {3} ".format(sgname,protocol,port,cidr))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "6" or ((("des" in choice) or ("Des" in choice) or ("DES" in choice)) and (("Insta" in choice) or ("insta" in choice) or ("INSTA" in choice))):
-            os.system("aws ec2 describe-instances")
+            net = os.system("aws ec2 describe-instances")
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+            
         
         elif choice == "7" or ((("start" in choice) or ("Start" in choice) or ("START" in choice)) and (("Insta" in choice) or ("insta" in choice) or ("INSTA" in choice))):
             instID = input("Enter the instances ID to start : ")
-            os.system("aws ec2 start-instances --instance-ids {}".format(instID))
+            net = os.system("aws ec2 start-instances --instance-ids {}".format(instID))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
         
         elif choice == "8" or ((("stop" in choice) or ("Stop" in choice) or ("STOP" in choice)) and (("Insta" in choice) or ("insta" in choice) or ("INSTA" in choice))):
             instID = input("Enter the instances ID to stop : ")
-            os.system("aws ec2 stop-instances --instance-ids {}".format(instID))
+            net = os.system("aws ec2 stop-instances --instance-ids {}".format(instID))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
         
         elif choice == "9" or ((("ter" in choice) or ("Ter" in choice) or ("TER" in choice)) and (("Insta" in choice) or ("insta" in choice) or ("INSTA" in choice))):
             instID = input("Enter the instances ID to Terminate : ")
-            os.system("aws ec2 terminate-instances --instance-ids {}".format(instID))
-        
+            net = os.system("aws ec2 terminate-instances --instance-ids {}".format(instID))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "10" or ((("launch" in choice) or ("Launch" in choice) or ("LAUNCH" in choice)) and (("Insta" in choice) or ("insta" in choice) or ("INSTA" in choice))):
             amiID = input("Enter the AMI ID : ")
             itype = input("Enter the instance type : ")
@@ -634,10 +656,14 @@ def l_aws():
                 choice: """)
                 if ch1 == "1" or (("yes" in ch1) or ("YES" in ch1) or ("Yes" in ch1)) :
                     userData = input("Enter the local path of user data file : ")
-                    os.system("aws ec2 run-instances --image-id {0} --instance-type {1} --security-group-ids {2} --subnet-id {3} --count {4} --key-name {5} --user-data=file://{6}".format(amiID,itype,sgID,subnetID,count,keypair,userData))
+                    net = os.system("aws ec2 run-instances --image-id {0} --instance-type {1} --security-group-ids {2} --subnet-id {3} --count {4} --key-name {5} --user-data=file://{6}".format(amiID,itype,sgID,subnetID,count,keypair,userData))
+                    if net != 0 :
+                        print("Please Check Your Internet Connection And Try Again")
                     break
                 elif ch1 == "2" or (("no" in ch1) or ("NO" in ch1) or ("No" in ch1)):
-                    os.system("aws ec2 run-instances --image-id {0} --instance-type {1} --security-group-ids {2} --subnet-id {3} --count {4} --key-name {5} ".format(amiID,itype,sgID,subnetID,count,keypair))
+                    net = os.system("aws ec2 run-instances --image-id {0} --instance-type {1} --security-group-ids {2} --subnet-id {3} --count {4} --key-name {5} ".format(amiID,itype,sgID,subnetID,count,keypair))
+                    if net != 0 :
+                        print("Please Check Your Internet Connection And Try Again")
                     break
                 else:
                     print("Invalid choice")
@@ -646,39 +672,53 @@ def l_aws():
             size = input("Enter the size of volume in gb : ")
             vtype = input("Enter the volume type : ")
             az = input("Enter the Availibilty zone : ")
-            os.system("aws ec2 create-volume --size {0} --volume-type {1} --availability-zone {2} ".format(size,vtype,az))
-        
+            net = os.system("aws ec2 create-volume --size {0} --volume-type {1} --availability-zone {2} ".format(size,vtype,az))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "12" or ((("Delete" in choice) or ("Delete" in choice) or ("DELETE" in choice)) and (("Vol" in choice) or ("vol" in choice) or ("VOL" in choice))):
             volID = input("Enter the volume ID : ")
-            os.system("aws ec2 delete-volume --volume-id {}".format(volID))
-        
+            net = os.system("aws ec2 delete-volume --volume-id {}".format(volID))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "13" or ((("detach" in choice) or ("Detach" in choice) or ("DETACH" in choice)) and (("Vol" in choice) or ("vol" in choice) or ("VOL" in choice))):
             volID = input("Enter the volume ID : ")
-            os.system("aws ec2 detach-volume --volume-id {}".format(volID))
-        
+            net = os.system("aws ec2 detach-volume --volume-id {}".format(volID))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "14" or ((("attach" in choice) or ("Attach" in choice) or ("ATTACH" in choice)) and (("Vol" in choice) or ("vol" in choice) or ("VOL" in choice))):
             volID = input("Enter the volume ID : ")
             instID = input("Enter the instance ID : ")
-            os.system("aws ec2 attach-volume --volume-id {0} --instance-id {1} --device /dev/sdf".format(volID,instID))
-        
+            net = os.system("aws ec2 attach-volume --volume-id {0} --instance-id {1} --device /dev/sdf".format(volID,instID))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "15" or ((("Create" in choice) or ("create" in choice) or ("CREATE" in choice)) and (("s3" in choice) or ("S3" in choice) or ("bucket" in choice) or ("Bucket" in choice) or ("BUCKET" in choice))):
             bucketName = input("Enter the bucket name : ")
             region = input("Enter the region : ")
             access = input("Enter the permission : ")
             lc = input("Enter the location constraint : ")
-            os.system("aws s3api create-bucket --bucket {0} --region {1} --ac {2} --create-bucket-configuration LocationConstraint={3}".format(bucketName,region,access,lc))
-        
+            net = os.system("aws s3api create-bucket --bucket {0} --region {1} --ac {2} --create-bucket-configuration LocationConstraint={3}".format(bucketName,region,access,lc))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "16" or ((("copy" in choice) or ("COPY" in choice) or ("Copy" in choice)) and (("s3" in choice) or ("S3" in choice) or ("bucket" in choice) or ("Bucket" in choice) or ("BUCKET" in choice))):
             path = input("Enter the local path of file to upload : ")
             bucketName = input("Enter the bucket name to upload : ")
             fileName = input("Enter the File name to save as : ")
             access = input("Enter the permission : ")
-            os.system("aws s3 cp {0} s3://{1}/{2}.jpg --ac {3} ".format(path,bucketName,fileName,access))
-        
+            net = os.system("aws s3 cp {0} s3://{1}/{2}.jpg --ac {3} ".format(path,bucketName,fileName,access))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "17" or ((("Create" in choice) or ("create" in choice)) and (("CREATE" in choice) or ("cloud" in choice) or ("Cloud" in choice) or ("CLOUD" in choice))):
             origin = input("Enter the origin domain name : ")
-            os.system("aws cloudfront create-distribution --origin-domain-name {}".format(origin))
-        
+            net = os.system("aws cloudfront create-distribution --origin-domain-name {}".format(origin))
+            if net != 0 :
+                print("Please Check Your Internet Connection And Try Again")
+
         elif choice == "18" or (("exit" in choice) or ("quit" in choice) or ("Exit" in choice) or ("Quit" in choice) or ("QUIT" in choice) or ("EXIT" in choice)) :
             print("""
 
