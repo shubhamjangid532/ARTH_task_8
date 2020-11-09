@@ -514,10 +514,26 @@ def l_ansible_setup():
         ch2 = input("Enter Your Choise : ")
 
         if ch2 == "1" or ((("setup" in ch2) or ("Setup" in ch2) or ("SETUP" in ch2)) and (("ansible" in ch2) or ("ANSIBLE" in ch2) or ("Ansible" in ch2))) :
-            print("Installation may take 10 to 15 minutes and also depends upon your internet connection ")
-            net = os.system("pip3 install ansible")
-            if net != 0 :
-                print("Please Check Your Internet Connection And Try Again")
+                       
+            check_p = os.system("rpm -q python3")
+            if check_p != 0:
+                print("""
+                    In your System python3 also not installed yet.
+                    it will take some time to install python3 and Ansible
+                """)
+                os.system("yum install python3 -y")
+                net = os.system("pip3 install ansible")
+                if net != 0 :
+                    print("Please Check Your Internet Connection And Try Again")
+            else :
+                check_a = os.system("pip3 list | grep ansible") 
+                if check_a != 0:
+                    print("""
+                        it will take some time to install Ansible
+                    """)
+                    net = os.system("pip3 install ansible")
+                    if net != 0 :
+                        print("Please Check Your Internet Connection And Try Again")
                 
             a = os.system("ls /etc/ | grep ip.txt > garbage")
             if a != 0:
@@ -537,11 +553,13 @@ def l_ansible_setup():
             passwd = getpass.getpass("Enter password of target :- ")
             print("Select target system :- ")
             while(1) :
+                os.system("tput setaf 1")
                 print("""
                     1. Windows
                     2. Linux
 
                     """)
+                os.system("tput setaf 7")
                 sys = input("Enter Your Choice :- ")
                 if sys == "1" or (("Win" in sys) or ("win" in sys) or ("WIN" in sys)) :
                     protocol = "winrm"
@@ -580,15 +598,33 @@ def l_aws():
         print("You Selected Amazon Web Services " , end = "\n\n")
         os.system("tput setaf 1")
         aws_menu()
+        os.system("tput setaf 2")
+        print(end="\n\n")
+        print("""
+                    If you first time use aws services in your system Compulsory to first use Option 1
+                    Than only go for other Options 
+        """)
         os.system("tput setaf 7")
 
         choice = input("Enter Your Choice : ")
 
         if choice == "1" or ((("login" in choice) or ("Login" in choice) or ("LOGIN" in choice)) and (("acc" in choice) or ("Acc" in choice) or ("ACC" in choice))) :
+            a = os.system("aws --version | grep 2.0")
+            if a !=0 :
+                net  = os.system('curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"')
+                if net != 0 :
+                    print("Please Check Your Internet Connection And Try Again")
+                b = os.system("rpm -q uzip")
+                if b != 0 :
+                    os.system('yum install uzip -y')
+                os.system("unzip awscliv2.zip")
+                os.system("sudo ./aws/install")
+
             net = os.system("aws configure")
+            print("logined")
             if net != 0 :
                 print("Please Check Your Internet Connection And Try Again")
-            print("logined")
+            
 
         elif choice == "2" or ((("Create" in choice) or ("create" in choice) or ("CREATE" in choice)) and (("key" in choice) or ("Key" in choice) or ("KEY" in choice))):
             keyname = input("Enter the new key name : ")
@@ -637,7 +673,7 @@ def l_aws():
             if net != 0 :
                 print("Please Check Your Internet Connection And Try Again")
         
-        elif choice == "9" or ((("ter" in choice) or ("Ter" in choice) or ("TER" in choice)) and (("Insta" in choice) or ("insta" in choice) or ("INSTA" in choice))):
+        elif choice == "9" or ((("terminate" in choice) or ("Terminate" in choice) or ("TER" in choice)) and (("Insta" in choice) or ("insta" in choice) or ("INSTA" in choice))):
             instID = input("Enter the instances ID to Terminate : ")
             net = os.system("aws ec2 terminate-instances --instance-ids {}".format(instID))
             if net != 0 :
@@ -650,11 +686,14 @@ def l_aws():
             subnetID = input("Enter the Subnet ID : ")
             count = input("Enter the number of instances to launch : ")
             keypair = input("Enter the key-pair to attach : ")
-            while(1):    
-                ch1 = input("""Do You Want To add User Data File 1to run scripts : 
-                    1. Yes
-                    2. No
-                choice: """)
+            while(1): 
+                os.system("tput setaf 1")  
+                print("""Do You Want To add User Data File to run scripts : 
+                                    1. Yes
+                                    2. No
+                """)
+                ch1 = input("choice:- ")
+                os.system("tput setaf 7")
                 if ch1 == "1" or (("yes" in ch1) or ("YES" in ch1) or ("Yes" in ch1)) :
                     userData = input("Enter the local path of user data file : ")
                     net = os.system("aws ec2 run-instances --image-id {0} --instance-type {1} --security-group-ids {2} --subnet-id {3} --count {4} --key-name {5} --user-data=file://{6}".format(amiID,itype,sgID,subnetID,count,keypair,userData))
@@ -805,103 +844,148 @@ def l_hadoop():
         elif choice == "9" or ((("STOP" in choice) or ("stop" in choice) or ("stop" in choice)) and (("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
             os.system("hadoop-daemon.sh stop datanode")
         elif choice == "10" or ((("per" in choice) or ("Per" in choice) or ("PER" in choice)) and (("opr" in choice) or ("Opr" in choice) or ("OPR" in choice))):
-            ch1 = input("""Who Are You? : 
-                    1. NamedNode
-                    2. DataNode
-                    3. Client
-        
-            Choice: """)
-            if ch1 == "1" or ((("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
-                print("""What Operation you want to perform?:
-                    1. Get Report
-                    2. Upload files
-                    3. Upload files with custom block size
-                    4. Read files
-                    5. Remove files
-                    6. List all files of a particular directory
+            while(1):
+                os.system("tput setaf 1")
+                print("""Who Are You? : 
+                                        1. NamedNode
+                                        2. DataNode
+                                        3. Client
+                                        4. Exit
             
                 """)
-                ch2 = input("please enter only numbers :-  ")
-                if ch2 == "1":
-                    os.system("hadoop dfsadmin -report")
-                elif ch2 == "2":
-                    fileName = input("Enter the File Name to upload : ")
-                    os.system("hadoop fs -put {} /".format(fileName))
-                elif ch2 == "3":
-                    fileName = input("Enter the File Name to upload : ")
-                    blockSize = input("Enter the block size in bytes : ")
-                    os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
-                elif ch2 == "4":
-                    fileName = input("Enter the File Name to read : ")
-                    os.system("hadoop fs -cat /{}".format(fileName))
-                elif ch2 == "5":
-                    fileName = input("Enter the File Name to remove : ")
-                    os.system("hadoop fs -rm {} /".format(fileName))
-                elif ch2 == "6":
-                    os.system("hadoop fs  -ls /")
-            
-                else:
-                    print("No Match Found Please Try Again")
+                os.system("tput setaf 7")
+                ch1 = input("Choice:  ")
+                if ch1 == "1" or ((("name" in choice) or ("Name" in choice) or ("NAME" in choice) or ("master" in choice) or ("Master" in choice) or ("MASTER" in choice))):
+                    while(1):
+                        os.system("tput setaf 1")
+                        print("""What Operation you want to perform?:
+                                        1. Get Report
+                                        2. Upload files
+                                        3. Upload files with custom block size
+                                        4. Read files
+                                        5. Remove files
+                                        6. List all files of a particular directory
+                                        7. Exit
+                    
+                        """)
+                        os.system("tput setaf 7")
+                        ch2 = input("please enter only numbers :-  ")
+                        if ch2 == "1":
+                            os.system("hadoop dfsadmin -report")
+                        elif ch2 == "2":
+                            fileName = input("Enter the File Name to upload : ")
+                            os.system("hadoop fs -put {} /".format(fileName))
+                        elif ch2 == "3":
+                            fileName = input("Enter the File Name to upload : ")
+                            blockSize = input("Enter the block size in bytes : ")
+                            os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
+                        elif ch2 == "4":
+                            fileName = input("Enter the File Name to read : ")
+                            os.system("hadoop fs -cat /{}".format(fileName))
+                        elif ch2 == "5":
+                            fileName = input("Enter the File Name to remove : ")
+                            os.system("hadoop fs -rm {} /".format(fileName))
+                        elif ch2 == "6":
+                            os.system("hadoop fs  -ls /")
+                        elif choice == "7" or (("exit" in choice) or ("quit" in choice) or ("Exit" in choice) or ("Quit" in choice) or ("QUIT" in choice) or ("EXIT" in choice)) :
+                            print("""
 
-            elif ch1 == "2"  or ((("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
-                print("""What Operation you want to perform?:
-                1. Upload files
-                2. Upload files with custom block size
-                3. Read files
-                4. Remove files
-                5. List all files of a particular directory
-            
-                """)
-                ch2 = input("please enter only numbers ")
-                if ch2 == "1":
-                    fileName = input("Enter the File Name to upload : ")
-                    os.system("hadoop fs -put {} /".format(fileName))
-                elif ch2 == "2":
-                    fileName = input("Enter the File Name to upload : ")
-                    blockSize = input("Enter the block size in bytes : ")
-                    os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
-                elif ch2 == "3":
-                    fileName = input("Enter the File Name to read : ")
-                    os.system("hadoop fs -cat /{}".format(fileName))
-                elif ch2 == "4":
-                    fileName = input("Enter the File Name to remove : ")
-                    os.system("hadoop fs -rm {} /".format(fileName))
-                elif ch2 == "5":
-                    os.system("hadoop fs  -ls /")
+                                You exit For Current Menu
+
+                            """)
+                            break                
+                        else:
+                            print("No Match Found Please Try Again")
+
+                elif ch1 == "2"  or ((("data" in choice) or ("Data" in choice) or ("DATA" in choice) or ("slave" in choice) or ("Slave" in choice) or ("SLAVE" in choice))):
+                    while(1):
+                        os.system("tput setaf 1")
+                        print("""What Operation you want to perform?:
+                                        1. Upload files
+                                        2. Upload files with custom block size
+                                        3. Read files
+                                        4. Remove files
+                                        5. List all files of a particular directory
+                                        6. Exit
+                    
+                        """)
+                        os.system("tput setaf 7")
+                        ch2 = input("please enter only numbers ")
+                        if ch2 == "1":
+                            fileName = input("Enter the File Name to upload : ")
+                            os.system("hadoop fs -put {} /".format(fileName))
+                        elif ch2 == "2":
+                            fileName = input("Enter the File Name to upload : ")
+                            blockSize = input("Enter the block size in bytes : ")
+                            os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
+                        elif ch2 == "3":
+                            fileName = input("Enter the File Name to read : ")
+                            os.system("hadoop fs -cat /{}".format(fileName))
+                        elif ch2 == "4":
+                            fileName = input("Enter the File Name to remove : ")
+                            os.system("hadoop fs -rm {} /".format(fileName))
+                        elif ch2 == "5":
+                            os.system("hadoop fs  -ls /")
+                        elif choice == "6" or (("exit" in choice) or ("quit" in choice) or ("Exit" in choice) or ("Quit" in choice) or ("QUIT" in choice) or ("EXIT" in choice)) :
+                            print("""
+
+                                You exit For Current Menu
+
+                            """)
+                            break
+                        
+                        else:
+                            print("No Match Found Please Try Again")
                 
-                else:
-                    print("No Match Found Please Try Again")
-            elif ch1 == "3" or (("client" in choice) or ("Client" in choice) or ("CLIENT" in choice)):
-                print("""What Operation you want to perform?:
-                1. Upload files
-                2. Upload files with custom block size
-                3. Read files
-                4. Remove files
-                5. List all files of a particular directory
-    
-                """)
-                ch2 = input("please enter only numbers ")
-                if ch2 == "1":
-                    fileName = input("Enter the File Name to upload : ")
-                    os.system("hadoop fs -put {} /".format(fileName))
-                elif ch2 == "2":
-                    fileName = input("Enter the File Name to upload : ")
-                    blockSize = input("Enter the block size in bytes : ")
-                    os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
-                elif ch2 == "3":
-                    fileName = input("Enter the File Name to read : ")
-                    os.system("hadoop fs -cat /{}".format(fileName))
-                elif ch2 == "4":
-                    fileName = input("Enter the File Name to remove : ")
-                    os.system("hadoop fs -rm {} /".format(fileName))
-                elif ch2 == "5":
-                    os.system("hadoop fs  -ls /")
+                elif ch1 == "3" or (("client" in choice) or ("Client" in choice) or ("CLIENT" in choice)):
+                    while(1):
+                        os.system("tput setaf 1")
+                        print("""What Operation you want to perform?:
+                                        1. Upload files
+                                        2. Upload files with custom block size
+                                        3. Read files
+                                        4. Remove files
+                                        5. List all files of a particular directory
+                                        6. Exit
             
+                        """)
+                        os.system("tput setaf 7")
+                        ch2 = input("please enter only numbers ")
+                        if ch2 == "1":
+                            fileName = input("Enter the File Name to upload : ")
+                            os.system("hadoop fs -put {} /".format(fileName))
+                        elif ch2 == "2":
+                            fileName = input("Enter the File Name to upload : ")
+                            blockSize = input("Enter the block size in bytes : ")
+                            os.system("hadoop fs -Ddfs.block.size={0} -put {1} /".format(blockSize,fileName))
+                        elif ch2 == "3":
+                            fileName = input("Enter the File Name to read : ")
+                            os.system("hadoop fs -cat /{}".format(fileName))
+                        elif ch2 == "4":
+                            fileName = input("Enter the File Name to remove : ")
+                            os.system("hadoop fs -rm {} /".format(fileName))
+                        elif ch2 == "5":
+                            os.system("hadoop fs  -ls /")
+                        elif choice == "6" or (("exit" in choice) or ("quit" in choice) or ("Exit" in choice) or ("Quit" in choice) or ("QUIT" in choice) or ("EXIT" in choice)) :
+                            print("""
+
+                                You exit For Current Menu
+
+                            """)
+                            break
+                    
+                        else:
+                            print("No Match Found Please Try Again")
+        
+                elif choice == "4" or (("exit" in choice) or ("quit" in choice) or ("Exit" in choice) or ("Quit" in choice) or ("QUIT" in choice) or ("EXIT" in choice)) :
+                    print("""
+
+                        You exit For Current Menu
+
+                    """)
+                    break
                 else:
                     print("No Match Found Please Try Again")
-    
-            else:
-                print("No Match Found Please Try Again")
             
 
         elif choice == "11" or (("exit" in choice) or ("quit" in choice) or ("Exit" in choice) or ("Quit" in choice) or ("QUIT" in choice) or ("EXIT" in choice)) :
