@@ -1,5 +1,6 @@
 import os
 import getpass
+import subprocess as sp
 from com_fun import *
 from local import *
 from myinfo import *
@@ -17,8 +18,19 @@ while (1) :
         selection()
         inp = input("Enter Where You Want To Perform Operation :- ")
         if (("own" in inp) or ("Own" in inp) or ("OWN" in inp) or ("local" in inp) or ("Local" in inp) or ("LOCAL" in inp)) :
-
+            
+            os.system("tput setaf 2")
+            print("""
+                    We first setup yum in you system 
+            """)
+            os.system("tput setaf 7")
+            
+            net = os.system("dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm")
+            if net != 0 :
+                print("Please make sure Your Internet in connected")
+                exit()
             while (1):
+                os.system("tput setaf 1")
                 mainMenu()
                 os.system("tput setaf 7")
 
@@ -107,7 +119,19 @@ while (1) :
                 os.system("ssh-copy-id root@{}".format(ip_add))
             else :
                 print("No Match Found Please Try Again")
+                exit()
+
+            os.system("tput setaf 2")
+            print("""
+                    We first setup yum in you system 
+            """)
+            os.system("tput setaf 7")
+            net = os.system("ssh {} dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm".format(ip_add))
+            if net != 0 :
+                print("Please make sure Your Internet in connected")
+                exit()
             while (1):
+                os.system("tput setaf 1")
                 mainMenu()
                 os.system("tput setaf 7")
 
