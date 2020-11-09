@@ -624,7 +624,7 @@ def r_aws(ip_add):
 
         elif choice == "2" or ((("Create" in choice) or ("create" in choice)) and (("CREATE" in choice) or ("key" in choice) or ("Key" in choice) or ("KEY" in choice))):
             keyname = input("Enter the new key name : ")
-            net = os.system("ssh {} aws ec2 create-key-pair --key-name {}".format(ip_add,keyname))
+            net = os.system("ssh {} aws ec2 create-key-pair --key-name {} > {}.pem".format(ip_add,keyname,keyname))
             if net != 0 :
                 print("Please Check Your Internet Connection And Try Again")
             print("Key pair created")

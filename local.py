@@ -628,7 +628,7 @@ def l_aws():
 
         elif choice == "2" or ((("Create" in choice) or ("create" in choice) or ("CREATE" in choice)) and (("key" in choice) or ("Key" in choice) or ("KEY" in choice))):
             keyname = input("Enter the new key name : ")
-            net = os.system("aws ec2 create-key-pair --key-name {}".format(keyname))
+            net = os.system("aws ec2 create-key-pair --key-name {} > {}.pem".format(keyname,keyname))
             if net != 0 :
                 print("Please Check Your Internet Connection And Try Again")
             print("Key pair created")
